@@ -1,10 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import routes from './routes'
+import Header from './Components/Header/Header'
+import './App.scss';
+
 
 function App() {
   return (
     <div className="App">
-      <p>Hello World</p>
+      {routes}
     </div>
   );
 }
