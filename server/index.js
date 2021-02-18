@@ -39,12 +39,12 @@ app.put('/api/user/:id', userCtrl.updateEmail )
 //Main Endpoints
 
 //Polls
-app.post('/api/poll/:id', mainCtrl.createPoll)
-app.delete('/api/poll/:id', mainCtrl.deletePoll)
-app.get('/api/polls/:id', mainCtrl.getPolls)
+app.post('/api/poll/', mainCtrl.createPoll)
+app.delete('/api/poll/:id', mainCtrl.deletePoll) // delete poll by poll id
+app.get('/api/polls/', mainCtrl.getPolls) // gets polls by user id
 //Comments
-app.post('/api/comment/:id', mainCtrl.createComment)
+app.post('/api/comment/:poll_id', mainCtrl.createComment)
 app.delete('/api/comment/:id', mainCtrl.deleteComment)
-app.get('/api/comments/:id', mainCtrl.getComments)
+app.get('/api/comments/:id', mainCtrl.getComments) // get comments by poll id
 
 
