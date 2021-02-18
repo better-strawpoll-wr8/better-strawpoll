@@ -1,0 +1,19 @@
+@import '../../scss/reset';
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+.landing{
+    width:100vw;
+    height:100vh;
+    background: $primary-color;
+    @include flexCenter(column);
+
+    .button-container Button{
+       margin: 20px;
+       font-weight:weight(medium);
+    }
+
+    .input-box-container{
+        @include flexCenter(column);
+    }
+}

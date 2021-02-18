@@ -1,7 +1,7 @@
 import React, {userState, useEffect, useState} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {getUser, clearUser, updateUser} from '../../redux/reducer'
+import {updateUser} from '../../redux/reducer'
 import axios from 'axios'
 //Styling Imports
 import './Header.scss'
@@ -30,7 +30,7 @@ const Header = (props) => {
         <div className='header'>
             <img src={logo} alt='logo image' className='logo'/>
             <nav>
-                {user.id
+                {!user.id
                  ? <Link to='/login' className='nav-links'>Sign In</Link>
                  : <>
                         <div className='profile-flex-box'> 

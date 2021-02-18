@@ -1,5 +1,5 @@
 INSERT INTO bs_users
-(username, email, hash)
+(username, email, hash, profile_picture)
 VALUES
-($1, $2, $3)
+($1, $2, $3, $4)
 returning *;

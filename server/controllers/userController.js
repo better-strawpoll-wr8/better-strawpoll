@@ -26,5 +26,3 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     }
 }
-
-//if there are problems see if puting the user in the .then in an array works
