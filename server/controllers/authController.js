@@ -26,7 +26,7 @@ module.exports = {
             return res.status(400).send('Email not found')
         }
 
-        const authenticated = bcrypt.compareSync(password, foundUser.password)
+        const authenticated = bcrypt.compareSync(password, foundUser.hash)
         if(!authenticated){
             return res.status(401).send('Password is incorrect')
         }
