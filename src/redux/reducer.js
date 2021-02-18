@@ -12,9 +12,7 @@ export function updateUser(userObj){
 }
 
 export default function reducer(state = initialState, action){
-    const { type, payload } = action
-
-    switch(action){
+    switch(action.type){
         case UPDATE_USER:
             return Object.assign({}, state, {user: action.payload})
         default:
