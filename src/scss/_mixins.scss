@@ -6,6 +6,10 @@
     flex-direction: $direction;
 }
 
+@function weight($weight-name){
+    @return map-get($font-weight, $weight-name);
+}
+
 //Arguments ($light-theme: true/ $light-theme: false)
 @mixin themeToggle($light-theme: true){
     @if $light-theme {
