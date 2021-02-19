@@ -17,12 +17,10 @@ console.log(recentlyCreated)
 
     const createNewPoll = () => {
         props.history.push('/create-poll')
-
     }
 
     const yourPolls = () => {
         props.history.push('/:id/polls')
-
     }
 
     const login = () => {
@@ -95,7 +93,6 @@ console.log(recentlyCreated)
                 </section>
             }
         </div>
-
     )
 }
 
