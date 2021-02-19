@@ -21,7 +21,6 @@ const CreatePoll = (props) => {
             setOptions({})
             setDateCreated('')
             setExpiryDate('')
-            setCreateView(false)
         })
         .catch(err => console.log(err))
     }
