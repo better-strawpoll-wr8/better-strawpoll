@@ -26,13 +26,13 @@ getPolls: async (req,res) => {
 getRecentPolls: async (req,res) => {
     const db = req.app.get('db')
     const polls = await db.polls.get_recent_polls()
-    res,status(200).send(polls)
+    res.status(200).send(polls)
 },
 
 getEndedPolls: async (req,res) => {
     const db = req.app.get('db')
     const polls = await db.polls.get_ended_polls()
-    res,status(200).send(polls)
+    res.status(200).send(polls)
 },
 
 //Comments
