@@ -17,12 +17,10 @@ console.log(recentlyCreated)
 
     const createNewPoll = () => {
         props.history.push('/create-poll')
-
     }
 
     const yourPolls = () => {
         props.history.push('/:id/polls')
-
     }
 
     const login = () => {
@@ -61,12 +59,13 @@ console.log(recentlyCreated)
     })
 
     const mappedEndedPolls = recentlyEnded.map(poll => {
+        return(
         <div key={poll.poll_id}>
-            <span>{poll.subject}</span>
-            <span>{poll.options}</span>
-            <span>{poll.dateCreated}</span>
-            <span>{poll.expiryDate}</span>
-        </div>
+             <span>{poll.subject}</span>
+            <span>{JSON.stringify(poll.options)}</span>
+            <span>{`${poll.date_created}`}</span>
+            <span>{`${poll.expiry_date}`}</span>
+        </div>)
     })
 
     return (
@@ -94,7 +93,6 @@ console.log(recentlyCreated)
                 </section>
             }
         </div>
-
     )
 }
 
