@@ -4,11 +4,14 @@ import Header from '../Header/Header'
 import { useDispatch, useSelector } from 'react-redux'
 //Styling Imports
 import './Dashboard.scss'
+import Snackbar from '@material-ui/core/Snackbar'
+
+
 
 const Dashboard = (props) => {
     const user = useSelector(state => state.user)
-    // const dispatch = useDispatch()
-    console.log('user:', user)
+    const dispatch = useDispatch()
+    // console.log('user:', user)
 
     const [recentlyCreated, setRecentlyCreated] = useState([])
     const [recentlyEnded, setRecentlyEnded] = useState([])
@@ -70,7 +73,7 @@ console.log(recentlyCreated)
 
     return (
         <div className='dashboard'>
-            <Header />
+            <Header history={props.history}/>
             <div className='recently-created-polls-box'>
                 <h2 className='polls-text' >Recently Created Polls</h2>
                 {mappedRecentPolls}

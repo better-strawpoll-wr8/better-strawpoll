@@ -3,11 +3,14 @@ import Header from '../Header/Header'
 import {useDispatch, useSelector} from 'react-redux'
 import {updateUser} from '../../redux/reducer'
 //Styling Imports
+import Button from '@material-ui/core/Button'
+import { TextField } from '@material-ui/core'
+import 'fontsource-roboto'
 import './Settings.scss'
 import axios from 'axios'
 
 const Settings = (props) => {
-
+    const [editView, setEditView] = useState(false)
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -16,9 +19,8 @@ const Settings = (props) => {
     const id = user.id
 
     const editUsername = () => {
-        axios.put(`/api/user/updateUsername`, {username, id})
+        axios.put(`/api/:id/updateUsername`, {username, id})
             .then(res => {
-                console.log(username)
                 dispatch(updateUser(res.data))
                 setUsername('')
             })
@@ -26,7 +28,7 @@ const Settings = (props) => {
     }
 
     const editPassword = () => {
-        axios.put(`/api/user/updatePassword`, {password, id})
+        axios.put(`/api/:id/updatePassword`, {password, id})
             .then(res => {
                 dispatch(updateUser(res.data))
                 setPassword('')
@@ -35,7 +37,7 @@ const Settings = (props) => {
     }
 
     const editEmail = () => {
-        axios.put(`/api/user/updateEmail`, {email, id})
+        axios.put(`/api/:id/updateEmail`, {email, id})
             .then(res => {
                 dispatch(updateUser(res.data))
                 setEmail('')
@@ -43,12 +45,31 @@ const Settings = (props) => {
             .catch(err => console.log(err)) 
     }
 
+    // console.log(user)
 
     return (
         <div className='settings'>
-            <Header/>
-            <p>{user.email}</p>
-            <p>{user.username}</p>
+            <Header history={props.history} user={user}/>
+            {/* <img className='profile-pic' src={user.profile_picture}/> */}
+            <h2>Welcome to your profile, {user.username}</h2>
+            <p>Email: {user.email}</p>
+            <p>Username: {user.username}</p>
+            <p>Password: ******</p>
+            {!editView
+             ? (
+                <div className='edit-user-container'>
+                    <Button className='edit-button' variant='contained' onClick={()=> setEditView(!editView)}>Edit Information</Button>
+                </div>
+             )
+             : ( 
+                 <div>
+                     <TextField
+                        value={username}
+                        placeholder='New Username'
+                        onChange={e => setUsername(e.target.value)} />
+                    <Button variant='contained' onClick={editUsername} id='edit-btn'>Submit</Button>    
+                 </div>
+             )}
             <input onChange={(e) => setUsername(e.target.value)}></input>
             <button onClick={editUsername}>Edit Username</button>
             <input onChange={(e) => setEmail(e.target.value)}></input>

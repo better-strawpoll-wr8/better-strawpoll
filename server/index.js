@@ -32,9 +32,9 @@ app.post('/api/login', authCtrl.login)
 app.get('/api/logout', authCtrl.logout)
 
 //User Endpoints
-app.put('/api/user/updateUsername', userCtrl.updateUsername )
-app.put('/api/user/updatePassword', userCtrl.updatePassword )
-app.put('/api/user/updateEmail', userCtrl.updateEmail )
+app.put('/api/:id/updateUsername', userCtrl.updateUsername )
+app.put('/api/:id/updatePassword', userCtrl.updatePassword )
+app.put('/api/:id/updateEmail', userCtrl.updateEmail )
 
 //Main Endpoints
 
