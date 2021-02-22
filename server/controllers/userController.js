@@ -14,8 +14,6 @@ module.exports = {
         const db = req.app.get('db')
         let salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
-        console.log('password', password)
-        console.log('salt', salt)
         db.users.edit_password(hash, id)
             .then((user)=> res.status(200).send(user))
             .catch(err => res.status(500).send(err))

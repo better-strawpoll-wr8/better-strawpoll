@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {userState, useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import {updateUser} from '../../redux/reducer'
 import Header from '../Header/Header'
 //Styling Imports
 import './UsersPolls.scss'
@@ -14,6 +15,7 @@ const [yourPolls, setYourPolls] = useState([])
 
 const getYourPolls = () => {
         const id = user.user_id
+        console.log(id)
         axios.get('/api/polls/', { id })
             .then(res => {
                 setYourPolls(res.data)
