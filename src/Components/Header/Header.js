@@ -8,24 +8,22 @@ import './Header.scss'
 import logo from '../../img/logo.png'
 import 'fontsource-roboto'
 
-
-
-
 const Header = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     const [dropDown, setDropDown] = useState(false)
 
     const handleSignOut = () => {
-        axios.get()
+        axios.get(`/api/logout`)
             .then( res => {
                 dispatch(updateUser(res.data))
-                props.history.push('/dashboard')
+                props.history.push('/')
             })
-            .catch(err => console.loge(err))
-        
+            .catch(err => console.log(err))
+        setDropDown(!dropDown)
     }
 
+    console.log(props)
     return (
         <div className='header'>
             <img src={logo} alt='logo image' className='logo'/>
@@ -34,8 +32,9 @@ const Header = (props) => {
                  ? <Link to='/login' className='nav-links'>Sign In</Link>
                  : <>
                         <div className='profile-flex-box'> 
+                            {/* add conditonal statement for if user has profile pic */}
                             <img src={logo} alt='user profile pic' className='profile-pic' onClick={() => setDropDown(!dropDown)}/>
-                            <h4 onClick={() => setDropDown(!dropDown)} className='username'>placeholder username{user.username}</h4>
+                            <h4 onClick={() => setDropDown(!dropDown)} className='username'>{user.username}</h4>
                         </div>
                     </>
                 }
@@ -44,11 +43,12 @@ const Header = (props) => {
                         <section className='drop-down-menu'>
                             <div className='menu-profile-flex-box'> 
                                 <img src={logo} alt='user profile pic' className='menu-profile-pic' onClick={() => setDropDown(!dropDown)}/>
-                                <h4 onClick={() => setDropDown(!dropDown)} className='username'>placeholder username{user.username}</h4>
+                                <h4 onClick={() => setDropDown(!dropDown)} className='username'>{user.username}</h4>
                             </div>
-                            <Link to='/polls' className='drop-down-links'>Your Polls</Link>
-                            <Link to='/:id/settings' className='drop-down-links'>Settings</Link>
-                            <Link to='/sign-out' className='drop-down-links'>Sign Out</Link>                                
+                            <Link to='/' className='drop-down-link'>Dashboard</Link>
+                            <Link to={`/${user.id}/polls`} className='drop-down-links'>Your Polls</Link>
+                            <Link to={`/${user.id}/settings`} className='drop-down-links'>Settings</Link>
+                            <Link className='drop-down-links' onClick={handleSignOut}>Sign Out</Link>                        
                         </section>
                     }
                 </div>
@@ -56,6 +56,5 @@ const Header = (props) => {
         </div>
     )
 }
-
 
 export default Header
