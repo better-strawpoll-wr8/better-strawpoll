@@ -28,6 +28,10 @@
 
     }
 
+    .menu-profile-pic h4{
+        margin-bottom: 20px;
+    }
+
     .profile-flex-box{
         @include flexCenter(row);
     }
