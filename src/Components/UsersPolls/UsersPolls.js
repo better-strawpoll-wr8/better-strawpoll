@@ -29,14 +29,24 @@ const getYourPolls = () => {
         getYourPolls()
     }, [])
 
+
     const mappedYourPolls = yourPolls.map(poll => {
         return(
-            <div key={poll.poll_id}>
-                 <span>Title: {poll.subject}</span>
-                <span>Date Created: {`${poll.date_created}`}</span>
-                <span>Expiry Date: {`${poll.expiry_date}`}</span>
-                <span># of participants: {JSON.stringify(poll.options)}</span>
-            </div>)
+            <div key={poll.poll_id} className='mapped-poll'>
+            <h4> </h4>
+            <span className='tlte'> Title: {poll.subject}</span>
+            <h4> </h4>
+            <span className='date-created'>Date Created: {`${poll.date_created}`}</span>
+            <h4> </h4>
+            <span className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</span>
+            <h4> </h4>
+            <span className='options'>Options:{poll.options.optionsListTrim.map((e, i) => {
+                return (
+                    <div key={i}>
+                        <span>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</span>
+                    </div>)
+            })}</span>
+        </div>)
     })
 
     return (
