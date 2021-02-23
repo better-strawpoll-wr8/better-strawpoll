@@ -15,15 +15,13 @@ const [yourPolls, setYourPolls] = useState([])
 
 const getYourPolls = () => {
         const id = user.id
-        console.log(id)
-        axios.get('/api/polls/', { id })
+        axios.get('/api/polls/'+id )
             .then(res => {
                 setYourPolls(res.data)
+                console.log(res.data)
             })
             .catch(err => console.log(err))
     }
-
-    console.log(yourPolls)
 
     useEffect(() => {
         getYourPolls()

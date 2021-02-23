@@ -17,7 +17,7 @@ deletePoll: async (req,res) => {
 },
 
 getPolls: async (req,res) => {
-    const { id } = req.body
+    const { id } = req.params
     const db = req.app.get('db')
     const polls = await db.polls.get_polls([id])
     res.status(200).send(polls)
@@ -33,6 +33,13 @@ getEndedPolls: async (req,res) => {
     const db = req.app.get('db')
     const polls = await db.polls.get_ended_polls()
     res.status(200).send(polls)
+},
+
+getPoll: async (req,res) => {
+    const {poll_id} = req.params
+    const db = req.app.get('db')
+    const [poll] = await db.polls.get_poll([poll_id])
+    res.status(200).send(poll)
 },
 
 //Comments
