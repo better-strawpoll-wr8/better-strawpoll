@@ -73,6 +73,16 @@ const Settings = (props) => {
         }
     }
 
+    const loggedinView = () => {
+        if(!user.id){
+            props.history.push('/')
+        }
+    }
+
+    useEffect(() => {
+       loggedinView()
+    }, [])
+
     // console.log(user)
 
     return (

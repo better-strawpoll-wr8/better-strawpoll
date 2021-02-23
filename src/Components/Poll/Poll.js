@@ -8,9 +8,14 @@ import axios from 'axios'
 
 const Poll = (props) => {
     const [poll, setPoll] = useState({})
+
     const id = props.location.state.poll.poll_id
+    console.log()
+
+    
 
     useEffect(() => {
+
         axios.get(`/api/poll/${id}`)
             .then(res => {
                 console.log('data: ',res.data)

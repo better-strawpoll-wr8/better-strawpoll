@@ -4,14 +4,14 @@
 
 .dashboard {
     width: 100%;
-    height: 100vh;
-    background: #b8ae81;
+    height: 100%;
+    // background: #b8ae81;
+    background: $primary-color;
     justify-content: space-around;
     box-sizing: border-box;
     z-index: 1;
 
     .content {
-        margin-top: 15px 0px;
         margin: 15px 0px 0px 0px;
         display: flex;
         flex-direction: column-reverse;
@@ -43,14 +43,16 @@
         box-sizing: border-box;
     }
     .login {
-        width: 25vw;
+        background: #b8ae81;
+        // width: 25vw;
         box-shadow: 1px 1px 10px rgb(0, 0, 0);
         cursor: pointer;
-        width:50vw;
+        width:100%;
         z-index: 1;
     }
     .create-poll-tab {
-        width:50vw;
+        background: #b8ae81;
+        width:100%;
         box-shadow: 1px 1px 10px rgb(0, 0, 0);
         cursor: pointer;
         z-index: 1;
@@ -60,7 +62,8 @@
         justify-content: center;
         z-index: 1;
         .your-polls-text {
-            width:50vw;
+            background: #b8ae81;
+            width:100%;
             box-shadow: 1px 1px 10px rgb(0, 0, 0);
             cursor: pointer;
             z-index: 1;
@@ -84,6 +87,7 @@
     }
     .boxes{
         display: flex;
+        justify-content: center;
 
     }
 
