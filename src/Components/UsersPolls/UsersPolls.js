@@ -41,9 +41,6 @@ const getYourPolls = () => {
             <Header />
             <h1>Your Polls</h1>
             <main className='polls-box'>
-                <h3>Title</h3>
-                <h3>Date Created</h3>
-                <h3>Expiry Date</h3>
                 <h3># of Participants</h3>
              {mappedYourPolls}
              </main>
