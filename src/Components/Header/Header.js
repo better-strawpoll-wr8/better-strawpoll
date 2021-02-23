@@ -23,7 +23,7 @@ const Header = (props) => {
         setDropDown(!dropDown)
     }
 
-    console.log(props)
+    // console.log(props)
     return (
         <div className='header'>
             <img src={logo} alt='logo image' className='logo'/>

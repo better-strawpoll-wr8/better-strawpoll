@@ -36,7 +36,7 @@ getEndedPolls: async (req,res) => {
 },
 
 getPoll: async (req,res) => {
-    const poll_id = req.params
+    const {poll_id} = req.params
     const db = req.app.get('db')
     const [poll] = await db.polls.get_poll([poll_id])
     res.status(200).send(poll)

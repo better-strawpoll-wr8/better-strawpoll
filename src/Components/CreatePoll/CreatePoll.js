@@ -20,6 +20,7 @@ const CreatePoll = (props) => {
         // checking for at least 2 options
         if (optionsListTrim[0] && optionsListTrim[1]) {
             const id = user.user_id
+            console.log(id)
             axios.post('/api/poll/', {
                 id: id, 
                 subject: subject, 

@@ -17,7 +17,7 @@ const Dashboard = (props) => {
     const [recentlyCreated, setRecentlyCreated] = useState([])
     const [recentlyEnded, setRecentlyEnded] = useState([])
 
-    console.log(recentlyCreated)
+    // console.log(recentlyCreated)
 
     const createNewPoll = () => {
         props.history.push('/create-poll')
@@ -54,7 +54,7 @@ const Dashboard = (props) => {
 
     const mappedRecentPolls = recentlyCreated.map(poll => {
         return (
-            <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id} className='mapped-poll'>
+            <Link to={{ pathname:`/polls/${poll.poll_id}`, state: {poll} }} key={poll.poll_id} className='mapped-poll'>
                 <h4> </h4>
                 <span className='tlte'> Title: {poll.subject}</span>
                 <h4> </h4>
@@ -68,7 +68,7 @@ const Dashboard = (props) => {
 
     const mappedEndedPolls = recentlyEnded.map(poll => {
         return (
-            <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id} className='mapped-poll'>
+            <Link to={{ pathname:`/polls/${poll.poll_id}`, state: {poll} }} key={poll.poll_id} className='mapped-poll'>
                 <h4> </h4>
                 <span className='tlte'> Title: {poll.subject}</span>
                 <h4> </h4>
