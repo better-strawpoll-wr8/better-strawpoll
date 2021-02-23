@@ -6,6 +6,7 @@ import './CreatePoll.scss'
 
 const CreatePoll = (props) => {
     const user = useSelector(state => state.user)
+    console.log(user)
 
     let date = new Date()
     date.setDate(date.getDate() + 7)
@@ -19,7 +20,8 @@ const CreatePoll = (props) => {
         const optionsListTrim = optionsList.filter(option => option.optionName)
         // checking for at least 2 options
         if (optionsListTrim[0] && optionsListTrim[1]) {
-            const id = user.user_id
+            const id = user.id
+            console.log(id)
             axios.post('/api/poll/', {
                 id: id, 
                 subject: subject, 
