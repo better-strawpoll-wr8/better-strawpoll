@@ -40,8 +40,9 @@ app.put('/api/:id/updateEmail', userCtrl.updateEmail )
 
 //            Main Polls
 app.post('/api/poll/', mainCtrl.createPoll)
-app.delete('/api/poll/:id', mainCtrl.deletePoll) // delete poll by poll id
+app.delete('/api/poll/:poll_id', mainCtrl.deletePoll) // delete poll by poll id
 app.get('/api/polls/', mainCtrl.getPolls) // gets user's polls by user id
+app.get('/api/poll/:poll_id', mainCtrl.getPoll)
 app.get('/api/recent_polls/', mainCtrl.getRecentPolls) 
 app.get('/api/ended_polls/', mainCtrl.getEndedPolls)
 

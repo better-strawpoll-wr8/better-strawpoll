@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button'
 
 
 const Poll = (props) => {
-
+    
 
     return (
         <div className='poll'>
