@@ -17,7 +17,7 @@ deletePoll: async (req,res) => {
 },
 
 getPolls: async (req,res) => {
-    const { id } = req.body
+    const { id } = req.params
     const db = req.app.get('db')
     const polls = await db.polls.get_polls([id])
     res.status(200).send(polls)
