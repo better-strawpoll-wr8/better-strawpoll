@@ -14,7 +14,11 @@ const UsersPolls = (props) => {
 const [yourPolls, setYourPolls] = useState([])
 
 const getYourPolls = () => {
+<<<<<<< HEAD
         const id = user.user_id
+=======
+        const id = user.id
+>>>>>>> main
         console.log(id)
         axios.get('/api/polls/', { id })
             .then(res => {
@@ -23,17 +27,20 @@ const getYourPolls = () => {
             .catch(err => console.log(err))
     }
 
+    console.log(yourPolls)
+
     useEffect(() => {
         getYourPolls()
     }, [])
 
     const mappedYourPolls = yourPolls.map(poll => {
-        <div key={poll.poll_id}>
-            <span>{poll.subject}</span>
-            <span>{poll.dateCreated}</span>
-            <span>{poll.expiryDate}</span>
-            <span>{poll.options}</span>
-        </div>
+        return(
+            <div key={poll.poll_id}>
+                 <span>Title: {poll.subject}</span>
+                <span>Date Created: {`${poll.date_created}`}</span>
+                <span>Expiry Date: {`${poll.expiry_date}`}</span>
+                <span># of participants: {JSON.stringify(poll.options)}</span>
+            </div>)
     })
 
     return (
@@ -41,7 +48,6 @@ const getYourPolls = () => {
             <Header />
             <h1>Your Polls</h1>
             <main className='polls-box'>
-                <h3># of Participants</h3>
              {mappedYourPolls}
              </main>
         </div>
