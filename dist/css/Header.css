@@ -1,0 +1,116 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  padding: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 120px;
+  width: 100%;
+  background: #8d9db6;
+  -webkit-box-shadow: 1px 1px 10px black;
+          box-shadow: 1px 1px 10px black;
+  z-index: 1000;
+  padding: 0px 15px;
+  position: relative;
+}
+
+.header .drop-down-menu {
+  -webkit-animation: nav-anim-left 0.6s;
+  /* Fx 5+ */
+  /* Opera 12+ */
+  /* IE 10+, Fx 29+ */
+  animation: nav-anim-left 0.6s;
+  margin-right: -25px;
+  margin-top: 450px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 280px;
+  height: 400px;
+  background: #8d9db6;
+  -webkit-box-shadow: 2px 2px 3px #888, -2px 2px 3px #888;
+          box-shadow: 2px 2px 3px #888, -2px 2px 3px #888;
+  cursor: pointer;
+}
+
+.header .menu-profile-pic h4 {
+  margin-bottom: 20px;
+}
+
+.header .profile-flex-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.header .profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #4b4b4b;
+  -webkit-box-shadow: 2px 2px 3px black;
+          box-shadow: 2px 2px 3px black;
+  margin-right: 15px;
+}
+
+.header .logo {
+  margin-top: 10px;
+  margin-left: 30px;
+  width: 120px;
+}
+
+.header .username {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.header .drop-down-links {
+  margin-top: 20px;
+}
+
+.header .menu-profile-pic {
+  margin-bottom: 10px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid #4b4b4b;
+  -webkit-box-shadow: 2px 2px 3px black;
+          box-shadow: 2px 2px 3px black;
+}
+/*# sourceMappingURL=Header.css.map */
