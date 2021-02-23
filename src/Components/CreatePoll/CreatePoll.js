@@ -11,35 +11,41 @@ const CreatePoll = (props) => {
     date.setDate(date.getDate() + 7)
     
     const [subject, setSubject] = useState('')
-    const [optionsList, setOptions] = useState(['', '', ''])
+    const [optionsList, setOptions] = useState([{optionName: '', voteCount: 0}, {optionName: '', voteCount: 0}, {optionName: '', voteCount: 0}])
     const [expiryDate, setExpiryDate] = useState(date.toISOString().slice(0, 10))
     const [expiryTime, setExpiryTime] = useState('00:00')
 
     const createPoll = () => {
-        const id = user.user_id
-        axios.post('/api/poll/', {
-            id: id, 
-            subject: subject, 
-            options: {optionsList}, 
-            date_created: new Date(), 
-            expiry_date: expiryDate + ' ' + expiryTime
-        })
-        //.then push to poll view
-        .catch(err => console.log(err))
+        const optionsListTrim = optionsList.filter(option => option.optionName)
+        // checking for at least 2 options
+        if (optionsListTrim[0] && optionsListTrim[1]) {
+            const id = user.user_id
+            axios.post('/api/poll/', {
+                id: id, 
+                subject: subject, 
+                options: {optionsListTrim}, 
+                date_created: new Date(), 
+                expiry_date: expiryDate + ' ' + expiryTime + ':00'
+            })
+            //.then push to poll view
+            .catch(err => console.log(err))
+        }
+        else {
+            // error message popup
+        }
     }
 
     const handleOptionsChange = (e, index) => {
         const list = [...optionsList]
-        list[index] = e.target.value
+        list[index].optionName = e.target.value
         setOptions(list)
     }
 
     const addOption = (index) => {
         if (optionsList.length - 1 === index && optionsList.length < 31) {
-            setOptions([...optionsList, ''])
+            setOptions([...optionsList, {optionName: '', voteCount: 0}])
         }
     }
-
 
     return (
         <div className="create-poll">
@@ -52,17 +58,17 @@ const CreatePoll = (props) => {
                     onChange={e => setSubject(e.target.value)}/>
             </label>
             <label>Poll Options
-            {optionsList.map((element, index) => {
-                return (
-                    <input 
-                        key={index}
-                        name="option"
-                        placeholder="Add poll option"
-                        value={element}
-                        onChange={e => handleOptionsChange(e, index)}
-                        onClick={() => addOption(index)}/>
-                )
-            })}
+                {optionsList.map((element, index) => {
+                    return (
+                        <input 
+                            key={index}
+                            name="option"
+                            placeholder="Add poll option"
+                            value={element.optionName}
+                            onChange={e => handleOptionsChange(e, index)}
+                            onClick={() => addOption(index)}/>
+                    )
+                })}
             </label>
             <label>
                 Expiration Date
