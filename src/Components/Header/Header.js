@@ -33,7 +33,7 @@ const Header = (props) => {
                  : <>
                         <div className='profile-flex-box'> 
                             {/* add conditonal statement for if user has profile pic */}
-                            <img src={logo} alt='user profile pic' className='profile-pic' onClick={() => setDropDown(!dropDown)}/>
+                            <img src={user.profile_picture} alt='user profile pic' className='profile-pic' onClick={() => setDropDown(!dropDown)}/>
                             <h4 onClick={() => setDropDown(!dropDown)} className='username'>{user.username}</h4>
                         </div>
                     </>
@@ -42,7 +42,7 @@ const Header = (props) => {
                     {dropDown && 
                         <section className='drop-down-menu'>
                             <div className='menu-profile-flex-box'> 
-                                <img src={logo} alt='user profile pic' className='menu-profile-pic' onClick={() => setDropDown(!dropDown)}/>
+                                <img src={user.profile_picture} alt='user profile pic' className='menu-profile-pic' onClick={() => setDropDown(!dropDown)}/>
                                 <h4 onClick={() => setDropDown(!dropDown)} className='username'>{user.username}</h4>
                             </div>
                             <Link to='/' className='drop-down-link'>Dashboard</Link>
