@@ -14,11 +14,7 @@ const UsersPolls = (props) => {
 const [yourPolls, setYourPolls] = useState([])
 
 const getYourPolls = () => {
-<<<<<<< HEAD
-        const id = user.user_id
-=======
         const id = user.id
->>>>>>> main
         console.log(id)
         axios.get('/api/polls/', { id })
             .then(res => {
