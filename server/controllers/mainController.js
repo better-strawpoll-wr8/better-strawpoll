@@ -35,6 +35,13 @@ getEndedPolls: async (req,res) => {
     res.status(200).send(polls)
 },
 
+getPoll: async (req,res) => {
+    const {poll_id} = req.params
+    const db = req.app.get('db')
+    const [poll] = await db.polls.get_poll([poll_id])
+    res.status(200).send(poll)
+},
+
 //Comments
 
 createComment: async (req,res) => {

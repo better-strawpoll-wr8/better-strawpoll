@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { userState, useEffect, useState } from 'react'
 import Header from '../Header/Header'
 import { useDispatch, useSelector } from 'react-redux'
+import {withRouter, Link} from 'react-router-dom'
 //Styling Imports
 import './Dashboard.scss'
 import Snackbar from '@material-ui/core/Snackbar'
@@ -16,7 +17,7 @@ const Dashboard = (props) => {
     const [recentlyCreated, setRecentlyCreated] = useState([])
     const [recentlyEnded, setRecentlyEnded] = useState([])
 
-    console.log(recentlyCreated)
+    // console.log(recentlyCreated)
 
     const createNewPoll = () => {
         props.history.push('/create-poll')
@@ -53,7 +54,7 @@ const Dashboard = (props) => {
 
     const mappedRecentPolls = recentlyCreated.map(poll => {
         return (
-            <div key={poll.poll_id} className='mapped-poll'>
+            <Link to={{ pathname:`/polls/${poll.poll_id}`, state: {poll} }} key={poll.poll_id} className='mapped-poll'>
                 <h4> </h4>
                 <span className='tlte'> Title: {poll.subject}</span>
                 <h4> </h4>
@@ -67,12 +68,12 @@ const Dashboard = (props) => {
                             <span>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</span>
                         </div>)
                 })}</span>
-            </div>)
+            </Link>)
     })
 
     const mappedEndedPolls = recentlyEnded.map(poll => {
         return (
-            <div key={poll.poll_id} className='mapped-poll'>
+            <Link to={{ pathname:`/polls/${poll.poll_id}`, state: {poll} }} key={poll.poll_id} className='mapped-poll'>
                 <h4> </h4>
                 <span className='tlte'> Title: {poll.subject}</span>
                 <h4> </h4>
@@ -86,7 +87,7 @@ const Dashboard = (props) => {
                             <span>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</span>
                         </div>)
                 })}</span>
-            </div>)
+            </Link>)
     })
 
 
