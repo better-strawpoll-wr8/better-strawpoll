@@ -11,8 +11,8 @@ poll_id SERIAL PRIMARY KEY,
 user_id int references bs_users(id),
 subject VARCHAR(120) not null,
 options json not null,
-date_created date not null,
-expiry_date date not null);
+date_created timestamp not null,
+expiry_date timestamp not null);
 
 create table comments (
 comment_id SERIAL PRIMARY KEY,

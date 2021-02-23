@@ -9,8 +9,6 @@ const CreatePoll = (props) => {
 
     let date = new Date()
     date.setDate(date.getDate() + 7)
-
-    console.log(new Date())
     
     const [subject, setSubject] = useState('')
     const [optionsList, setOptions] = useState([{optionName: '', voteCount: 0}, {optionName: '', voteCount: 0}, {optionName: '', voteCount: 0}])
@@ -81,9 +79,7 @@ const CreatePoll = (props) => {
                 <input
                     type="time"
                     value={expiryTime}
-                    onChange={e => {
-                        setExpiryTime(e.target.value)
-                        console.log(expiryDate + ' ' + expiryTime)}}/>
+                    onChange={e => setExpiryTime(e.target.value)}/>
             </label>
             <button onClick={() => createPoll()}>Create Poll</button>
         </div>
