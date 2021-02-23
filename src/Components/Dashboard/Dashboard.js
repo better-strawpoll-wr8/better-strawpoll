@@ -61,7 +61,12 @@ const Dashboard = (props) => {
                 <h4> </h4>
                 <span className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</span>
                 <h4> </h4>
-                <span className='num-of-participants'># of participants: {JSON.stringify(poll.options)}</span>
+                <span className='options'>Options:{poll.options.optionsListTrim.map((e, i) => {
+                    return (
+                        <div key={i}>
+                            <span>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</span>
+                        </div>)
+                })}</span>
             </div>)
     })
 
@@ -75,9 +80,34 @@ const Dashboard = (props) => {
                 <h4> </h4>
                 <span className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</span>
                 <h4> </h4>
-                <span className='num-of-participants'># of participants: {JSON.stringify(poll.options)}</span>
+                <span className='options'>Options: {poll.options.optionsListTrim.map((e, i) => {
+                    return (
+                        <div key={i}>
+                            <span>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</span>
+                        </div>)
+                })}</span>
             </div>)
     })
+
+
+    // const mappedEndedPolls = recentlyEnded.map(poll => {
+    //     return (
+    //         <div key={poll.poll_id} className='mapped-poll'>
+    //             <h4> </h4>
+    //             <span className='tlte'> Title: {poll.subject}</span>
+    //             <h4> </h4>
+    //             <span className='date-created'>Date Created: {`${poll.date_created}`}</span>
+    //             <h4> </h4>
+    //             <span className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</span>
+    //             <h4> </h4>
+    //             <span className='options'>Options: {JSON.stringify(poll.options.optionsListTrim.map((e, i) => {
+    //                 return (
+    //                     <div key={i}>
+    //                         <span>{e.optionName}: {e.voteCount}</span>
+    //                     </div>)
+    //             }))}</span>
+    //         </div>)
+    // })
 
     return (
         <div className='dashboard'>
