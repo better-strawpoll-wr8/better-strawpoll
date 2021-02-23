@@ -54,7 +54,7 @@ const Dashboard = (props) => {
 
     const mappedRecentPolls = recentlyCreated.map(poll => {
         return (
-            <Link to={{ pathname:`/polls/${poll.poll_id}`, state: {poll} }} key={poll.poll_id} className='mapped-poll'>
+            <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id} className='mapped-poll'>
                 <h4> </h4>
                 <span className='tlte'> Title: {poll.subject}</span>
                 <h4> </h4>

@@ -2,6 +2,10 @@
 @import "../../scss/mixins";
 @import "../../scss/variables";
 
+.poll-buttons{
+    margin: 50px;
+
+}
 .poll {
     @include flexSpaceEvenly(row);
     margin-top: 40px;
@@ -14,4 +18,8 @@
         box-shadow: 2px 2px 3px rgb(0, 0, 0);
         margin-right:15px;
     }
+}
+
+.comments{
+    margin-top: 50px;
 }
