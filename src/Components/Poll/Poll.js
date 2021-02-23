@@ -27,11 +27,11 @@ const Poll = (props) => {
             setPoll(res.data)
         })
         .catch(err => console.log(err))
-    
+        
     }, [])
 
     //Runs to get authorID only if poll data is received
-    useEffect(() => {
+    useEffect(async() => {
         axios.get(`/api/user/${authorId}`)
         .then(res=> {
             console.log('authorinfo:', res.data)

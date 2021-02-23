@@ -45,7 +45,7 @@ getPoll: async (req, res) => {
 getUserById: async(req, res) => {
     const {authorId} = req.params
     const db = req.app.get('db')
-    console.log(authorId)
+    console.log('authorID: ',authorId)
     const [user] = await db.users.get_user_by_id([authorId])
     res.status(200).send(user)
 },
