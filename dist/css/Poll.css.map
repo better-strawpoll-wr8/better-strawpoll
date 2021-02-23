@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,CAAC,CAAA;EACG,UAAU,EAAE,UAAU;EACtB,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;CACb;;ADAD,AAAA,KAAK,CAAC;EEYF,OAAO,EAAC,IAAI;EACZ,eAAe,EAAE,YAAY;EAC7B,WAAW,EAAE,MAAM;EACnB,cAAc,EFdW,GAAG;EAC5B,MAAM,EAAE,IAAI;CAUf;;AAZD,AAII,KAJC,CAID,wBAAwB,CAAA;EACpB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,aAAa,EAAE,GAAG;EAClB,MAAM,EAAE,GAAG,CAAC,KAAK,CAAC,OAAe;EACjC,UAAU,EAAE,GAAG,CAAC,GAAG,CAAC,GAAG,CAAC,KAAY;EACpC,YAAY,EAAC,IAAI;CACpB;;AAEL,AAAA,aAAa,CAAA;EACT,WAAW,EAAE,IAAI;CACpB;;AAED,AAAA,SAAS,CAAA;EACL,UAAU,EAAE,IAAI;CACnB",
+    "sources": [
+        "../../src/Components/Poll/Poll.scss",
+        "../../src/scss/_reset.scss",
+        "../../src/scss/_mixins.scss",
+        "../../src/scss/_variables.scss"
+    ],
+    "names": [],
+    "file": "Poll.css"
+}

@@ -1,0 +1,42 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.poll {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 60px;
+}
+
+.poll .poll-author-profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid #4b4b4b;
+  -webkit-box-shadow: 2px 2px 3px black;
+          box-shadow: 2px 2px 3px black;
+  margin-right: 15px;
+}
+
+.poll-buttons {
+  margin-left: 30px;
+}
+
+.comments {
+  margin-top: 50px;
+}
+/*# sourceMappingURL=Poll.css.map */
