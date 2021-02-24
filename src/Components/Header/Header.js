@@ -23,10 +23,16 @@ const Header = (props) => {
         setDropDown(!dropDown)
     }
 
-    // console.log(props)
+    const redirectToDash = () => {
+        props.history.push('/')
+    }
+
+    console.log(props)
     return (
         <div className='header'>
-            <img src={logo} alt='logo image' className='logo'/>
+            <Link to='/' className='drop-down-link'>
+                <img src={logo} alt='logo image' className='logo'/>
+            </Link>
             <nav>
                 {!user.id
                  ? <Link to='/login' className='nav-links'>Sign In</Link>

@@ -1,15 +1,21 @@
 import React, {userState, useEffect, useState} from 'react'
-import axios from 'axios';
-import {Pie} from 'react-chartjs-2';
-import {useParams} from 'react-router-dom';
+import Header from '../Header/Header'
 //Styling Imports
 import './Results.scss'
 
 const Results = (props) => {
 
 
+
+ 
+
+    useEffect(() => {
+    
+    }, [])
+
     return (
         <div className='results'>
+            <Header/>
             Results PAGE
         </div>
     )

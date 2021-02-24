@@ -23,8 +23,15 @@ const getYourPolls = () => {
             .catch(err => console.log(err))
     }
 
+    const loggedinView = () => {
+        if(!user.id){
+            props.history.push('/')
+        }
+    }
+
     useEffect(() => {
         getYourPolls()
+        loggedinView()
     }, [])
 
 
