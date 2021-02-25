@@ -92,8 +92,11 @@
     .boxes{
         display: flex;
         justify-content: center;
-
     }
+
+.results{
+    z-index: 200;
+}
 
 }
 
