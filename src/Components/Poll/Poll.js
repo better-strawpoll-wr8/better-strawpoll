@@ -1,6 +1,7 @@
 import React, {userState, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Header from '../Header/Header'
+import Results from '../Results/Results'
 //Styling Imports
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -16,6 +17,10 @@ const Poll = (props) => {
     const user = useSelector(state => state.user)
     const [poll, setPoll] = useState({})
     const [pollAuthor, setPollAuthor] = useState({})
+    const [vote, setVote] = useState('')
+    const [voteIndex, setVoteIndex] = useState(0)
+    const [options, setOptions] = useState([])
+    const [resultsView, setResultsView] = useState(false)
     const pollId = props.match.params.poll_id
     const authorId = poll.user_id
     // console.log('authorId: ',authorId)
@@ -31,17 +36,41 @@ const Poll = (props) => {
     }, [])
 
     //Runs to get authorID only if poll data is received
-    useEffect(async() => {
-        axios.get(`/api/user/${authorId}`)
-        .then(res=> {
-            console.log('authorinfo:', res.data)
-            setPollAuthor(res.data)
-        })
-        .catch(err => console.log(err))
+    useEffect(() => {
+        if(authorId){
+            axios.get(`/api/user/${authorId}`)
+            .then(res=> {
+                console.log('authorinfo:', res.data)
+                setPollAuthor(res.data)
+            })
+            .catch(err => console.log(err))
+        }
+
+
     }, [poll])
   
-        console.log('POLL VARIABLE:',props)
-        console.log(poll.options)
+    const handleVote = (voteIndex) => {
+        console.log(vote)
+        console.log(poll.options.optionsListTrim[0].optionName)
+        // for(let i=0; i< poll.options.optionsListTrim.length; i++){
+        //     if(poll.options.optionsListTrim[i].optionName === vote){
+        //         poll.options.optionsListTrim[i].voteCount++
+        //         console.log( poll.options.optionsListTrim[i].voteCount)
+        //     }
+        // }
+        poll.options.optionsListTrim[voteIndex].voteCount++
+        axios.put('/api/vote', {options: poll.options, pollId})
+            .then(res => {
+                console.log('res.data:',res.data)
+            })
+            .catch(err => console.log(err))
+    }
+
+    const handleResults = () => {
+        return (
+            <Results />
+        )
+    }
     return (
         <>
             <Header />
@@ -55,7 +84,7 @@ const Poll = (props) => {
                         <span className='options'>{poll.options?.optionsListTrim.map((e, i) => {
                             return (
                                 <div key={i}>
-                                    <FormControlLabel value={e.optionName} control={<Radio />} label={e.optionName} />
+                                    <FormControlLabel value={`${i}`} control={<Radio />} label={e.optionName} onClick={() => setVoteIndex(i)}/>
                                 </div>)
                             })}</span>
                         </RadioGroup>
@@ -66,8 +95,9 @@ const Poll = (props) => {
                     <img className='poll-author-profile-img' src={pollAuthor.profile_picture}/>
                 </section>
             </div>
-            <Button className='poll-buttons' variant='contained' id='vote-btn'>Vote</Button>   
-            <Button className='poll-buttons' variant='contained' id='vote-btn'>View Results</Button>   
+            <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button>   
+            <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>   
+            {resultsView && <Results pollId={pollId}/>}
             <section className='comments'>
                 <h1>Comments</h1>
             </section>

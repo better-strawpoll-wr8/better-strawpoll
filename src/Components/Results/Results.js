@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Pie} from 'react-chartjs-2';
 //Styling Imports
 import './Results.scss'
-import Dashboard from '../Dashboard/Dashboard';
 
 const Results = (props) => {
     const [graphData, setGraphData] = useState({});
@@ -23,14 +22,12 @@ const Results = (props) => {
     }
 
     useEffect(() => {
-        axios.get(`/api/poll/${props.match.params.poll_id}`)
+        axios.get(`/api/poll/${props.pollId}`)
             .then(res => setGraphData(res.data))
     }, [])
 
     return (
-        
         <Pie data={data}/>
-        // <Dashboard/>
     )
 }
 

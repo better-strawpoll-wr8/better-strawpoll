@@ -6,7 +6,10 @@ import { withRouter, Link } from 'react-router-dom'
 //Styling Imports
 import './Dashboard.scss'
 import Snackbar from '@material-ui/core/Snackbar'
-import Results from '../Results/Results'
+import { Date } from 'prismic-reactjs';
+
+import { Pie } from 'react-chartjs-2';
+
 
 
 
@@ -17,8 +20,6 @@ const Dashboard = (props) => {
     console.log(user)
     const [recentlyCreated, setRecentlyCreated] = useState([])
     const [recentlyEnded, setRecentlyEnded] = useState([])
-
-    // console.log(recentlyCreated)
 
     const createNewPoll = () => {
         props.history.push('/create-poll')
@@ -53,43 +54,94 @@ const Dashboard = (props) => {
         getEndedPolls()
     }, [])
 
+
+
     const mappedRecentPolls = recentlyCreated.map(poll => {
+
+        const colors = poll.options?.optionsListTrim.map(() => '#' + Math.floor(Math.random() * 16777215).toString(16))
+
+        const data = {
+            labels: poll.options?.optionsListTrim.map(el => el.optionName),
+            datasets: [
+                {
+                    label: '# of votes',
+                    data: poll.options?.optionsListTrim.map(el => el.voteCount),
+                    backgroundColor: colors,
+                    borderColor: colors,
+                    borderWidth: 1
+                }
+            ]
+        }
+
+          const dateCreated = JSON.stringify(poll.date_created)
+          console.log(dateCreated)
+
+
+
+
+        // const timestamp = Date(document.data.event_date);
+
+        console.log(poll.date_created)
+
+        // const timestamp = Date(poll.date_created);
+
+
+        // const formattedTimestamp = Intl.DateTimeFormat('en-US', {
+        //     year: "numeric",
+        //     month: "short",
+        //     day: "2-digit",
+        //     hour: "numeric",
+        //     minute: "2-digit",
+        //     second: "2-digit"
+        // }).format(timestamp);
+
+
         return (
-            <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id} className='mapped-poll'>
-                <h4 className='tlte'> Title: {poll.subject}</h4>
+            <div className='mapped-poll'>
+                <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id}>
+                    <h4 className='tlte'> Title: {poll.subject}</h4>
+                </Link>
+                {/* <h4 className='date-created'>Date Created: {`${formattedTimestamp}`}</h4> */}
                 <h4 className='date-created'>Date Created: {`${poll.date_created}`}</h4>
                 <h4 className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</h4>
                 <div className='results'>
-                    
+                    <Pie data={data} />
                 </div>
-                {/* <h4 className='options'>Options:{poll.options.optionsListTrim.map((e, i) => {
-                    return (
-                        <div key={i}>
-                            <h4>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</h4>
-                        </div>)
-                })}</h4> */}
-            </Link>)
+            </div>
+        )
+
     })
 
     const mappedEndedPolls = recentlyEnded.map(poll => {
+
+        const colors = poll.options?.optionsListTrim.map(() => '#' + Math.floor(Math.random() * 16777215).toString(16))
+
+        const data = {
+            labels: poll.options?.optionsListTrim.map(el => el.optionName),
+            datasets: [
+                {
+                    label: '# of votes',
+                    data: poll.options?.optionsListTrim.map(el => el.voteCount),
+                    backgroundColor: colors,
+                    borderColor: colors,
+                    borderWidth: 1
+                }
+            ]
+        }
+
         return (
-            <Link to={{ pathname: `/polls/${poll.poll_id}`, state: { poll } }} key={poll.poll_id} className='mapped-poll'>
-                <h4 className='tlte'> Title: {poll.subject}</h4>
+            <div className='mapped-poll'>
+                <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id}>
+                    <h4 className='tlte'> Title: {poll.subject}</h4>
+                </Link>
                 <h4 className='date-created'>Date Created: {`${poll.date_created}`}</h4>
                 <h4 className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</h4>
                 <div className='results'>
-
+                    <Pie data={data} />
                 </div>
-                {/* <h4 className='options'>Options: {poll.options.optionsListTrim.map((e, i) => {
-                    return (
-                        <div key={i}>
-                            <h4>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</h4>
-                        </div>)
-                })}</h4> */}
-            </Link>)
+            </div>
+        )
     })
-
-
 
     return (
         <div className='dashboard'>
