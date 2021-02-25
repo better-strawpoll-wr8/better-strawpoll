@@ -34,6 +34,7 @@ const CreatePoll = (props) => {
             })
             //.then push to poll view
             .catch(err => console.log(err))
+            props.history.push('/')
         }
         else {
             // error message popup

@@ -22,7 +22,7 @@ const Results = (props) => {
     }
 
     useEffect(() => {
-        axios.get(`/api/poll/${props.match.params.poll_id}`)
+        axios.get(`/api/poll/${props.pollId}`)
             .then(res => setGraphData(res.data))
     }, [])
 

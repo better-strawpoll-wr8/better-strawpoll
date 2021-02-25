@@ -54,21 +54,23 @@ console.log(user)
 
     const mappedRecentPolls = recentlyCreated.map(poll => {
         return (
-            <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id} className='mapped-poll'>
-                <h4> </h4>
-                <span className='tlte'> Title: {poll.subject}</span>
-                <h4> </h4>
-                <span className='date-created'>Date Created: {`${poll.date_created}`}</span>
-                <h4> </h4>
-                <span className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</span>
-                <h4> </h4>
-                <span className='options'>Options:{poll.options.optionsListTrim.map((e, i) => {
-                    return (
-                        <div key={i}>
-                            <span>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</span>
-                        </div>)
-                })}</span>
-            </Link>)
+            <div className='mapped-poll'>
+            <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id}>
+                <h4 className='tlte'> Title: {poll.subject}</h4>
+            </Link>
+            <h4 className='date-created'>Date Created: {`${poll.date_created}`}</h4>
+            <h4> </h4>
+            <span className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</span>
+            <h4> </h4>
+            <span className='options'>Options:{poll.options.optionsListTrim.map((e, i) => {
+                return (
+                    <div key={i}>
+                        <span>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</span>
+                    </div>)
+            })}</span>
+            </div>
+        )
+
     })
 
     const mappedEndedPolls = recentlyEnded.map(poll => {
