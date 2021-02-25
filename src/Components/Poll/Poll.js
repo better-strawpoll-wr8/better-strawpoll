@@ -2,6 +2,7 @@ import React, {userState, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Header from '../Header/Header'
 import Results from '../Results/Results'
+import ShareSocials from '../ShareSocials/ShareSocials'
 //Styling Imports
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -11,6 +12,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import './Poll.scss'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
+
 
 
 const Poll = (props) => {
@@ -23,7 +25,6 @@ const Poll = (props) => {
     const [resultsView, setResultsView] = useState(false)
     const pollId = props.match.params.poll_id
     const authorId = poll.user_id
-    // console.log('authorId: ',authorId)
 
     useEffect(() =>  {
         axios.get(`/api/poll/${pollId}`)
@@ -32,7 +33,6 @@ const Poll = (props) => {
             setPoll(res.data)
         })
         .catch(err => console.log(err))
-        
     }, [])
 
     //Runs to get authorID only if poll data is received
@@ -48,16 +48,8 @@ const Poll = (props) => {
 
 
     }, [poll])
-  
+  console.log(props)
     const handleVote = (voteIndex) => {
-        console.log(vote)
-        console.log(poll.options.optionsListTrim[0].optionName)
-        // for(let i=0; i< poll.options.optionsListTrim.length; i++){
-        //     if(poll.options.optionsListTrim[i].optionName === vote){
-        //         poll.options.optionsListTrim[i].voteCount++
-        //         console.log( poll.options.optionsListTrim[i].voteCount)
-        //     }
-        // }
         poll.options.optionsListTrim[voteIndex].voteCount++
         axios.put('/api/vote', {options: poll.options, pollId})
             .then(res => {
@@ -66,11 +58,6 @@ const Poll = (props) => {
             .catch(err => console.log(err))
     }
 
-    const handleResults = () => {
-        return (
-            <Results />
-        )
-    }
     return (
         <>
             <Header />
@@ -101,6 +88,8 @@ const Poll = (props) => {
             <section className='comments'>
                 <h1>Comments</h1>
             </section>
+            <h2>Share this poll!</h2>
+            <ShareSocials shareUrl={`/api/poll/${pollId}`}/>
         </>
     )
 }
