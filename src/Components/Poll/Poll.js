@@ -1,6 +1,7 @@
 import React, {userState, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Header from '../Header/Header'
+import Results from '../Results/Results'
 //Styling Imports
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -19,6 +20,7 @@ const Poll = (props) => {
     const [vote, setVote] = useState('')
     const [voteIndex, setVoteIndex] = useState(0)
     const [options, setOptions] = useState([])
+    const [resultsView, setResultsView] = useState(false)
     const pollId = props.match.params.poll_id
     const authorId = poll.user_id
     // console.log('authorId: ',authorId)
@@ -32,16 +34,6 @@ const Poll = (props) => {
         .catch(err => console.log(err))
         
     }, [])
-
-    useEffect(() =>  {
-        axios.get(`/api/poll/${pollId}`)
-        .then(res => {
-            console.log('data: ',res.data)
-            setPoll(res.data)
-        })
-        .catch(err => console.log(err))
-        
-    }, [vote])
 
     //Runs to get authorID only if poll data is received
     useEffect(() => {
@@ -73,6 +65,12 @@ const Poll = (props) => {
             })
             .catch(err => console.log(err))
     }
+
+    const handleResults = () => {
+        return (
+            <Results />
+        )
+    }
     return (
         <>
             <Header />
@@ -98,7 +96,8 @@ const Poll = (props) => {
                 </section>
             </div>
             <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button>   
-            <Button className='vote-buttons' variant='contained' id='vote-btn'>View Results</Button>   
+            <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>   
+            {resultsView && <Results pollId={pollId}/>}
             <section className='comments'>
                 <h1>Comments</h1>
             </section>
