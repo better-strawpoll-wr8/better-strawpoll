@@ -73,37 +73,23 @@ const Dashboard = (props) => {
             ]
         }
 
-          const dateCreated = JSON.stringify(poll.date_created)
-          console.log(dateCreated)
+        const dateCreatedStr = JSON.stringify(poll.date_created).replace(/["]+/g, '')
+        const dateExpStr = JSON.stringify(poll.expiry_date).replace(/["]+/g, '')
 
 
+        const dateCreated = dateCreatedStr.slice(0, 10)
+        const timeCreated = dateCreatedStr.slice(11, 16)
 
-
-        // const timestamp = Date(document.data.event_date);
-
-        console.log(poll.date_created)
-
-        // const timestamp = Date(poll.date_created);
-
-
-        // const formattedTimestamp = Intl.DateTimeFormat('en-US', {
-        //     year: "numeric",
-        //     month: "short",
-        //     day: "2-digit",
-        //     hour: "numeric",
-        //     minute: "2-digit",
-        //     second: "2-digit"
-        // }).format(timestamp);
-
+        const dateExp = dateExpStr.slice(0, 10)
+        const timeExp = dateExpStr.slice(11, 16)
 
         return (
             <div className='mapped-poll'>
                 <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id}>
                     <h4 className='tlte'> Title: {poll.subject}</h4>
                 </Link>
-                {/* <h4 className='date-created'>Date Created: {`${formattedTimestamp}`}</h4> */}
-                <h4 className='date-created'>Date Created: {`${poll.date_created}`}</h4>
-                <h4 className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</h4>
+                <h4 className='date-created'>Date Created: {dateCreated} Time: {timeCreated}</h4>
+                <h4 className='expiry-date'>Expires: {dateExp} Time: {timeExp}</h4>
                 <div className='results'>
                     <Pie data={data} />
                 </div>
@@ -129,13 +115,23 @@ const Dashboard = (props) => {
             ]
         }
 
+        const dateCreatedStr = JSON.stringify(poll.date_created).replace(/["]+/g, '')
+        const dateExpStr = JSON.stringify(poll.expiry_date).replace(/["]+/g, '')
+
+
+        const dateCreated = dateCreatedStr.slice(0, 10)
+        const timeCreated = dateCreatedStr.slice(11, 16)
+
+        const dateExp = dateExpStr.slice(0, 10)
+        const timeExp = dateExpStr.slice(11, 16)
+
         return (
             <div className='mapped-poll'>
                 <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id}>
                     <h4 className='tlte'> Title: {poll.subject}</h4>
                 </Link>
-                <h4 className='date-created'>Date Created: {`${poll.date_created}`}</h4>
-                <h4 className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</h4>
+                <h4 className='date-created'>Date Created: {dateCreated} Time: {timeCreated}</h4>
+                <h4 className='expiry-date'>Expired: {dateExp} Time: {timeExp}</h4>
                 <div className='results'>
                     <Pie data={data} />
                 </div>
