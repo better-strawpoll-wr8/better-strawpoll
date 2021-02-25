@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Pie} from 'react-chartjs-2';
 //Styling Imports
 import './Results.scss'
+import Dashboard from '../Dashboard/Dashboard';
 
 const Results = (props) => {
     const [graphData, setGraphData] = useState({});
@@ -27,7 +28,9 @@ const Results = (props) => {
     }, [])
 
     return (
+        
         <Pie data={data}/>
+        // <Dashboard/>
     )
 }
 

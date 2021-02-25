@@ -2,10 +2,11 @@ import axios from 'axios'
 import React, { userState, useEffect, useState } from 'react'
 import Header from '../Header/Header'
 import { useDispatch, useSelector } from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 //Styling Imports
 import './Dashboard.scss'
 import Snackbar from '@material-ui/core/Snackbar'
+import Results from '../Results/Results'
 
 
 
@@ -13,7 +14,7 @@ const Dashboard = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     console.log('user:', user)
-console.log(user)
+    console.log(user)
     const [recentlyCreated, setRecentlyCreated] = useState([])
     const [recentlyEnded, setRecentlyEnded] = useState([])
 
@@ -55,38 +56,36 @@ console.log(user)
     const mappedRecentPolls = recentlyCreated.map(poll => {
         return (
             <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id} className='mapped-poll'>
-                <h4> </h4>
-                <span className='tlte'> Title: {poll.subject}</span>
-                <h4> </h4>
-                <span className='date-created'>Date Created: {`${poll.date_created}`}</span>
-                <h4> </h4>
-                <span className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</span>
-                <h4> </h4>
-                <span className='options'>Options:{poll.options.optionsListTrim.map((e, i) => {
+                <h4 className='tlte'> Title: {poll.subject}</h4>
+                <h4 className='date-created'>Date Created: {`${poll.date_created}`}</h4>
+                <h4 className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</h4>
+                <div className='results'>
+                    
+                </div>
+                {/* <h4 className='options'>Options:{poll.options.optionsListTrim.map((e, i) => {
                     return (
                         <div key={i}>
-                            <span>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</span>
+                            <h4>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</h4>
                         </div>)
-                })}</span>
+                })}</h4> */}
             </Link>)
     })
 
     const mappedEndedPolls = recentlyEnded.map(poll => {
         return (
-            <Link to={{ pathname:`/polls/${poll.poll_id}`, state: {poll} }} key={poll.poll_id} className='mapped-poll'>
-                <h4> </h4>
-                <span className='tlte'> Title: {poll.subject}</span>
-                <h4> </h4>
-                <span className='date-created'>Date Created: {`${poll.date_created}`}</span>
-                <h4> </h4>
-                <span className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</span>
-                <h4> </h4>
-                <span className='options'>Options: {poll.options.optionsListTrim.map((e, i) => {
+            <Link to={{ pathname: `/polls/${poll.poll_id}`, state: { poll } }} key={poll.poll_id} className='mapped-poll'>
+                <h4 className='tlte'> Title: {poll.subject}</h4>
+                <h4 className='date-created'>Date Created: {`${poll.date_created}`}</h4>
+                <h4 className='expiry-date'>Expiry Date: {`${poll.expiry_date}`}</h4>
+                <div className='results'>
+
+                </div>
+                {/* <h4 className='options'>Options: {poll.options.optionsListTrim.map((e, i) => {
                     return (
                         <div key={i}>
-                            <span>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</span>
+                            <h4>{JSON.stringify(e.optionName).replace(/["]+/g, '')}: {JSON.stringify(e.voteCount).replace(/["]+/g, '')}</h4>
                         </div>)
-                })}</span>
+                })}</h4> */}
             </Link>)
     })
 
