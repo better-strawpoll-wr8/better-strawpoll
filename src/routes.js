@@ -15,7 +15,7 @@ export default (
         <Route path= '/login' component={Landing} />
         <Route path= '/create-poll' component={CreatePoll} />
         <Route path= '/:id/polls' component={UsersPolls} />
-        <Route path= '/polls/:poll_id' component={Poll} />
+        <Route exact path= '/polls/:poll_id' component={Poll} />
         <Route path= '/polls/:poll_id/results' component={Results} />
         <Route path= '/:id/settings' component={Settings} />
     </Switch>

@@ -1,11 +1,14 @@
 import axios from 'axios'
 import React, {userState, useEffect, useState} from 'react'
-import { useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import Header from '../Header/Header'
 //Styling Imports
 import './CreatePoll.scss'
 
 const CreatePoll = (props) => {
     const user = useSelector(state => state.user)
+    const dispatch = useDispatch()
+
     console.log(user)
 
     let date = new Date()
@@ -49,20 +52,37 @@ const CreatePoll = (props) => {
         }
     }
 
+    const loggedinView = () => {
+        if(!user.id){
+            console.log(user)
+            // props.history.push('/')
+        }
+    }
+
+    useEffect(() => {
+       loggedinView()
+    }, [])
+
     return (
         <div className="create-poll">
-            <label>
-                Subject
+            <Header/>
+            <main className='content'>
+            <button className='create-button' onClick={() => createPoll()}>Create Poll</button>
+                <div className='data'>
+            <label className='data-lable'>
+                Subject:
                 <input
+                className='data-input'
                     name="subject"
                     placeholder="Add poll subject/question"
                     value={subject}
                     onChange={e => setSubject(e.target.value)}/>
             </label>
-            <label>Poll Options
+            <label className='data-lable'>Poll Options:
                 {optionsList.map((element, index) => {
                     return (
                         <input 
+                        className='data-input'
                             key={index}
                             name="option"
                             placeholder="Add poll option"
@@ -72,52 +92,25 @@ const CreatePoll = (props) => {
                     )
                 })}
             </label>
-            <label>
-                Expiration Date
+            <label className='data-lable'>
+                Expiration Date:
                 <input 
+                className='data-input'
                     type="date"
                     value={expiryDate}
                     onChange={e => {setExpiryDate(e.target.value)}}/>
                 <input
+                className='data-input'
                     type="time"
                     value={expiryTime}
                     onChange={e => setExpiryTime(e.target.value)}/>
             </label>
-            <button onClick={() => createPoll()}>Create Poll</button>
+            </div>
+            </main>
         </div>
     )
 
-    /* const [subject, setSubject] = useState('')
-    const [options, setOptions] = useState({})
-    const [dateCreated, setDateCreated] = useState('')
-    const [expiryDate, setExpiryDate] = useState('')
-
-
-    const createPost = () => {
-        const id = user.user_id
-        axios.post('/api/poll/', {id, subject, options, dateCreated, expiryDate})
-        .then(() => {
-            setSubject('')
-            setOptions({})
-            setDateCreated('')
-            setExpiryDate('')
-        })
-        .catch(err => console.log(err))
-    }
-
-    return (
-        <div className= 'create-poll'>
-            <input className='poll-input' value={subject}
-                        onChange={e => setSubject(e.target.value)}  />
-                        <input className='poll-input' value={options}
-                        onChange={e => setOptions(e.target.value)}/>
-                        <input className='poll-input' value={dateCreated}
-                        onChange={e => setDateCreated(e.target.value)}/>
-                        <input className='poll-input' value={expiryDate}
-                        onChange={e => setExpiryDate(e.target.value)}/>
-                        <button onClick={createPost}>Create Poll</button>
-        </div>
-    ) */
+   
 }
 
 export default CreatePoll

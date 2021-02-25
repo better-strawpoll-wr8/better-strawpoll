@@ -35,11 +35,19 @@ getEndedPolls: async (req,res) => {
     res.status(200).send(polls)
 },
 
-getPoll: async (req,res) => {
+getPoll: async (req, res) => {
     const {poll_id} = req.params
     const db = req.app.get('db')
     const [poll] = await db.polls.get_poll([poll_id])
     res.status(200).send(poll)
+},
+
+getUserById: async(req, res) => {
+    const {authorId} = req.params
+    const db = req.app.get('db')
+    console.log('authorID: ',authorId)
+    const [user] = await db.users.get_user_by_id([authorId])
+    res.status(200).send(user)
 },
 
 //Comments

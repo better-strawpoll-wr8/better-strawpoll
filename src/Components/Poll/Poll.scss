@@ -1,0 +1,24 @@
+@import "../../scss/reset";
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.poll {
+    @include flexSpaceEvenly(row);
+    margin: 60px;
+
+    .poll-author-profile-img{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 2px solid rgb(75, 75, 75);
+        box-shadow: 2px 2px 3px rgb(0, 0, 0);
+        margin-right:15px;
+    }
+}
+.poll-buttons{
+    margin-left: 30px;
+}
+
+.comments{
+    margin-top: 50px;
+}

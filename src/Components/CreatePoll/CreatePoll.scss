@@ -1,0 +1,50 @@
+@import "../../scss/reset";
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.create-poll{
+    width: 100%;
+    height: 100vh;
+    // background: #b8ae81;
+    background: $primary-color;
+    justify-content: space-around;
+    box-sizing: border-box;
+    z-index: 1;
+
+    .content{
+        margin: 40px 0px 0px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 0px 10px;
+        z-index: 1;
+    }
+   
+    .create-button{
+        // background: $primary-color;
+        background: #b8ae81;
+        width: 25vw;
+        box-shadow: 1px 1px 10px rgb(0, 0, 0);
+        cursor: pointer;
+        width:100%;
+        z-index: 1;
+        font-size: 30px;
+    }
+    .data{
+        margin: 90px 0px 0px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 0px 10px;
+        z-index: 1;
+    }
+
+    .data-lable{
+        font-size: 25px;
+    }
+    .data-input{
+        font-size: 25px;
+        background: #b8ae81;
+    }
+
+}
