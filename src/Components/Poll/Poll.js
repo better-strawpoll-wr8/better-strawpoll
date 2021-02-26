@@ -1,6 +1,7 @@
 import React, {userState, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Header from '../Header/Header'
+import Comments from '../Comments/comments'
 //Styling Imports
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -69,7 +70,7 @@ const Poll = (props) => {
             <Button className='poll-buttons' variant='contained' id='vote-btn'>Vote</Button>   
             <Button className='poll-buttons' variant='contained' id='vote-btn'>View Results</Button>   
             <section className='comments'>
-                <h1>Comments</h1>
+                <Comments/>
             </section>
         </>
     )
