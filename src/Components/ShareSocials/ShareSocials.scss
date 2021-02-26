@@ -1,0 +1,13 @@
+@import "../../scss/reset";
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.share-socials{
+    width: auto;
+    padding: 15px;
+    // border: 2px solid rgb(75, 75, 75);
+
+    .share-buttons{
+        margin: 10px;
+    }
+}
