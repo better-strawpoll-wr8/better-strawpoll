@@ -6,11 +6,7 @@ import { withRouter, Link } from 'react-router-dom'
 //Styling Imports
 import './Dashboard.scss'
 import Snackbar from '@material-ui/core/Snackbar'
-import { Date } from 'prismic-reactjs';
-
 import { Pie } from 'react-chartjs-2';
-
-
 
 
 const Dashboard = (props) => {
@@ -76,7 +72,6 @@ const Dashboard = (props) => {
         const dateCreatedStr = JSON.stringify(poll.date_created).replace(/["]+/g, '')
         const dateExpStr = JSON.stringify(poll.expiry_date).replace(/["]+/g, '')
 
-
         const dateCreated = dateCreatedStr.slice(0, 10)
         const timeCreated = dateCreatedStr.slice(11, 16)
 
@@ -117,7 +112,6 @@ const Dashboard = (props) => {
 
         const dateCreatedStr = JSON.stringify(poll.date_created).replace(/["]+/g, '')
         const dateExpStr = JSON.stringify(poll.expiry_date).replace(/["]+/g, '')
-
 
         const dateCreated = dateCreatedStr.slice(0, 10)
         const timeCreated = dateCreatedStr.slice(11, 16)
