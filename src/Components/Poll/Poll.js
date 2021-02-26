@@ -1,7 +1,6 @@
 import React, {userState, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Header from '../Header/Header'
-import Comments from '../Comments/comments'
 //Styling Imports
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
