@@ -1,11 +1,13 @@
 import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import ReactDOM from 'react-dom';
 import './index.scss';
 import store from './redux/store'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter, HashRouter} from 'react-router-dom'
+const Router = process.env.NODE_ENV === 'development' ? HashRouter : BrowserRouter;
+
 
 ReactDOM.render(
   <React.StrictMode>
