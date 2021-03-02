@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Header from '../Header/Header'
 import Results from '../Results/Results'
 import ShareSocials from '../ShareSocials/ShareSocials'
+import Comments from '../Comments/comments'
 //Styling Imports
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';

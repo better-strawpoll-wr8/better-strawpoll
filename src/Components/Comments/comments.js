@@ -6,19 +6,20 @@ const Comments = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     console.log('user:', user)
-    const pollId = props.match.params.poll_id
-    const [commentSection, setComments] = useState([])
+    const pollId = useSelector(state => state.poll)
+    const [comment, setComment] = useState('')
+    const [pollComment, setComments] = useState([])
 
     const createComment = () => {
         const userId = user.id 
         axios.post(`/api/comment/${pollId}`, {userId, pollId, comment})
         .then(res => {
-            console.log(res.data)
+            setComment(res.data)
         })
         .catch(err => console.log(err))
     }
 
-    const getComment = () => {
+    const getComments = () => {
         axios.get(`/api/comments/${pollId}`)
         .then(res => {
             setComments(res.data)
@@ -26,7 +27,7 @@ const Comments = (props) => {
         .catch(err => console.log(err))
     }
 
-    const mappedComments = commentSection.map(comments => {
+    const mappedComments = pollComment.map(comments => {
         return (
             <span className='commentText'>{comments.comment}</span>
         )
@@ -40,12 +41,12 @@ const Comments = (props) => {
                 name='commentBody'
                 placeholder=''
                 value={comment}
-                onChange={e => setComments(e.target.value)}
+                onChange={e => setComment(e.target.value)}
                 />
                 <button className='comment-button' onClick={() => createComment()}>Add Comment</button>
             </div>
             <div className='allComments'>
-                {commentSection}
+                {mappedComments}
             </div>
         </section>
     )
