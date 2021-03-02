@@ -71,11 +71,24 @@ const Poll = (props) => {
             <Results />
         )
     }
+
+    const redirectToDash = () => {
+        props.history.push('/')
+    }
+
     return (
-        <>
+        <main className='whole-component'>
             <Header />
+            <div className='dash-box'>
+            <h2 className='back-to-dash' onClick={redirectToDash}>Back to Dashboard</h2>
+            </div>
             <div className='poll'>
-                <section>
+            <section className='author-box'>
+                    <h3>Poll Created By: {pollAuthor.username}</h3>
+                    <img className='poll-author-profile-img' src={pollAuthor.profile_picture}/>
+                </section>
+                <div className='poll-and-buttons'>
+                <section className='poll-box'>
                     <h2> {poll.subject}</h2>
                     {/* poll.options needs ? to work around the issue of not getting data in time of jsx */}
                     <FormControl component="fieldset">
@@ -90,18 +103,23 @@ const Poll = (props) => {
                         </RadioGroup>
                     </FormControl>
                 </section>
-                <section>
-                    <h3>Poll Created By: {pollAuthor.username}</h3>
-                    <img className='poll-author-profile-img' src={pollAuthor.profile_picture}/>
-                </section>
-            </div>
+                <div className='the-buttons'>
             <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button>   
             <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>   
+            </div>
+                </div>
+                
+            </div>
+            <div className='results-box'>
+               
+            <div className='results'>
             {resultsView && <Results pollId={pollId}/>}
+            </div>
+            </div>
             <section className='comments'>
                 <h1>Comments</h1>
             </section>
-        </>
+        </main>
     )
 }
 
