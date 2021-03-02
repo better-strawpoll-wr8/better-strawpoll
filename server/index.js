@@ -5,8 +5,11 @@ const session = require('express-session')
 const authCtrl = require('./controllers/authController')
 const mainCtrl = require('./controllers/mainController')
 const userCtrl = require('./controllers/userController')
+const path = require('path')
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT} = process.env
+
 const app = express()
+
 
 app.use(express.json())
 
@@ -63,3 +66,8 @@ app.delete('/api/comment/:id', mainCtrl.deleteComment)
 app.get('/api/comments/:id', mainCtrl.getComments) // get comments by poll id
 
 
+app.use(express.static(`${__dirname}/../build`))
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+  })
