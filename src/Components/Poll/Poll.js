@@ -19,6 +19,7 @@ import axios from 'axios'
 const Poll = (props) => {
     const user = useSelector(state => state.user)
     let cookiePolls = JSON.parse(Cookies.get('cookie'))
+    const [expired, setExpired] = useState(false)
     const [poll, setPoll] = useState({})
     const [pollAuthor, setPollAuthor] = useState({})
     const [vote, setVote] = useState('')
@@ -35,8 +36,8 @@ const Poll = (props) => {
                 setPoll(res.data)
             })
             .catch(err => console.log(err))
-    }, [])
 
+    }, [])
 
     //Runs to get authorID only if poll data is received
     useEffect(() => {
@@ -46,12 +47,10 @@ const Poll = (props) => {
                     setPollAuthor(res.data)
                 })
                 .catch(err => console.log(err))
-        }
-        if(poll.expiry_date < Date.now()){
-            
-        }
 
+        }
     }, [poll])
+
     const handleVote = (voteIndex) => {
         poll.options.optionsListTrim[voteIndex].voteCount++
         axios.put('/api/vote', { options: poll.options, pollId })
@@ -81,20 +80,29 @@ const Poll = (props) => {
                     <section className='poll-box'>
                         <h2> {poll.subject}</h2>
                         {/* poll.options needs ? to work around the issue of not getting data in time of jsx */}
-                        {voted
-                            ? <div>You have already voted</div>
-                            :
-                            <FormControl component="fieldset">
-                                <FormLabel component="legend">Options</FormLabel>
-                                <RadioGroup aria-label="gender" name="gender1" >
-                                    <span className='options'>{poll.options?.optionsListTrim.map((e, i) => {
-                                        return (
-                                            <div key={i}>
-                                                <FormControlLabel value={`${i}`} control={<Radio />} label={e.optionName} onClick={() => setVoteIndex(i)} />
-                                            </div>)
-                                    })}</span>
-                                </RadioGroup>
-                            </FormControl>
+                        {(voted)
+                            ? <>
+                                {(Date.parse(poll.expiry_date) < Date.parse(new Date()))
+                                    ? <p>This poll has expired.</p>
+                                    : <p>You have already voted.</p>
+                            }</>
+
+                            : <>
+                                {!(Date.parse(poll.expiry_date) < Date.parse(new Date()))
+                                    ?
+                                    <FormControl component="fieldset">
+                                        <FormLabel component="legend">Options</FormLabel>
+                                        <RadioGroup aria-label="gender" name="gender1" >
+                                            <span className='options'>{poll.options?.optionsListTrim.map((e, i) => {
+                                                return (
+                                                    <div key={i}>
+                                                        <FormControlLabel value={`${i}`} control={<Radio />} label={e.optionName} onClick={() => setVoteIndex(i)} />
+                                                    </div>)
+                                            })}</span>
+                                        </RadioGroup>
+                                    </FormControl>
+                                    : <p>This poll has expired.</p>
+                                }</>
                         }
                     </section>
                 </div>
