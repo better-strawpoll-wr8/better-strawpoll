@@ -1,42 +1,46 @@
 import axios from 'axios'
 import {useSelector, useDispatch} from 'react-redux'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 const Comments = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     console.log('user:', user)
     //const pollId = useSelector(state => state.poll)
-    const pollId = props.match.params.poll_id
+    const pollId = props.pollId
     const [comment, setComment] = useState('')
-    const [pollComment, setComments] = useState([])
-    console.log(pollId)
+    const [pollComment, setPollComment] = useState([])
+    const user_id = user.id 
     const createComment = () => {
-        const userId = user.id 
-        axios.post(`/api/comment/${pollId}`, {userId, pollId, comment})
+        console.log('user', user.id)
+        axios.post(`/api/comment/${pollId}`, {user_id, comment})
         .then(res => {
-            setComments(res.data)
+            setComment('')
+            getComments()
         })
         .catch(err => console.log(err))
     }
-    console.log(props)
+
+    
     const getComments = () => {
         axios.get(`/api/comments/${pollId}`)
         .then(res => {
-            setComments(res.data)
+            setPollComment(res.data)
         })
         .catch(err => console.log(err))
     }
-    console.log(pollComment)
+    console.log({pollComment})
     const mappedComments = pollComment.map(comments => {
         return (
-            <span className='commentText'>{comments.comment}</span>
+            <p className='commentText'>{comments.comment}</p>
         )
     })
-
+    useEffect(() => {
+        getComments()
+    }, [])
     return (
         <section className='commentBox'>
-            <div className='writeComment'>
+            {user.id && <div className='writeComment'>
                 <input
                 className='comment-input'
                 name='commentBody'
@@ -45,7 +49,7 @@ const Comments = (props) => {
                 onChange={e => setComment(e.target.value)}
                 />
                 <button className='comment-button' onClick={() => createComment()}>Add Comment</button>
-            </div>
+            </div>}
             <div className='allComments'>
                 {mappedComments}
             </div>

@@ -86,9 +86,9 @@ const Poll = (props) => {
             <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button>   
             <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>   
             {resultsView && <Results pollId={pollId}/>}
-            <section className='comments'>
-                <Comments/>
-            </section>
+            {<section className='comments'>
+                <Comments pollId={pollId}/>
+            </section>}
             <h2>Share this poll!</h2>
             <ShareSocials shareUrl={`/api/poll/${pollId}`}/>
         </>
