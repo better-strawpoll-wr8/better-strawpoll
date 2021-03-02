@@ -1,0 +1,40 @@
+@import "../../scss/reset";
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.usersPolls {
+    width: 100vw;
+    height: 100vh;
+    // background: #b8ae81;
+    background: $primary-color;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 1;
+    overflow: scroll;
+
+    .polls-box {
+        margin: 15px 0px 0px 0px;
+        display: flex;
+        justify-content: space-around;
+        padding: 0px 10px;
+        z-index: 1;
+        margin: 10px;
+        background: #b8ae81;
+    // background: $primary-color;
+        box-shadow: 1px 1px 10px rgb(0, 0, 0);
+        z-index: 1;
+        padding: 5px 5px;
+
+        .mapped-poll{
+    // background: $primary-color;
+    // background: #b8ae81;
+            border: solid black;
+            box-shadow: 1px 1px 10px rgb(0, 0, 0);
+            padding: 30px 30px 30px 30px;
+            margin: 40px 40px;
+            height: 40%;
+            width: 40vw;
+        }
+    }
+}

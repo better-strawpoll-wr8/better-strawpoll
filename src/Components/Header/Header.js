@@ -3,6 +3,7 @@ import {withRouter, Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {updateUser} from '../../redux/reducer'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 //Styling Imports
 import './Header.scss'
 import logo from '../../img/logo.png'
@@ -27,7 +28,6 @@ const Header = (props) => {
         props.history.push('/')
     }
 
-    console.log(props)
     return (
         <div className='header'>
             <Link to='/' className='drop-down-link'>
@@ -36,6 +36,7 @@ const Header = (props) => {
             <nav>
                 {!user.id
                  ? <Link to='/login' className='nav-links'>Sign In</Link>
+                 
                  : <>
                         <div className='profile-flex-box'> 
                             {/* add conditonal statement for if user has profile pic */}
