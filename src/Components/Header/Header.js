@@ -36,6 +36,7 @@ const Header = (props) => {
             <nav>
                 {!user.id
                  ? <Link to='/login' className='nav-links'>Sign In</Link>
+                 
                  : <>
                         <div className='profile-flex-box'> 
                             {/* add conditonal statement for if user has profile pic */}
