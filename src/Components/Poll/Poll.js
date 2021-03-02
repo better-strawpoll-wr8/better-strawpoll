@@ -19,7 +19,6 @@ import axios from 'axios'
 const Poll = (props) => {
     const user = useSelector(state => state.user)
     let cookiePolls = JSON.parse(Cookies.get('cookie'))
-    console.log(cookiePolls)
     const [poll, setPoll] = useState({})
     const [pollAuthor, setPollAuthor] = useState({})
     const [vote, setVote] = useState('')
@@ -48,7 +47,9 @@ const Poll = (props) => {
             })
             .catch(err => console.log(err))
         }
-
+        if(poll.expiry_date < Date.now()){
+            
+        }
 
     }, [poll])
     const handleVote = (voteIndex) => {
