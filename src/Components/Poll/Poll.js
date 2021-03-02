@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Header from '../Header/Header'
 import Results from '../Results/Results'
 import ShareSocials from '../ShareSocials/ShareSocials'
+import Cookies from 'js-cookie'
 //Styling Imports
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -17,6 +18,8 @@ import axios from 'axios'
 
 const Poll = (props) => {
     const user = useSelector(state => state.user)
+    let cookiePolls = JSON.parse(Cookies.get('cookie'))
+    console.log(cookiePolls)
     const [poll, setPoll] = useState({})
     const [pollAuthor, setPollAuthor] = useState({})
     const [vote, setVote] = useState('')
@@ -24,23 +27,23 @@ const Poll = (props) => {
     const [options, setOptions] = useState([])
     const [resultsView, setResultsView] = useState(false)
     const pollId = props.match.params.poll_id
+    let voted = cookiePolls.includes(pollId)
     const authorId = poll.user_id
 
     useEffect(() =>  {
         axios.get(`/api/poll/${pollId}`)
         .then(res => {
-            console.log('data: ',res.data)
             setPoll(res.data)
         })
         .catch(err => console.log(err))
     }, [])
+
 
     //Runs to get authorID only if poll data is received
     useEffect(() => {
         if(authorId){
             axios.get(`/api/user/${authorId}`)
             .then(res=> {
-                console.log('authorinfo:', res.data)
                 setPollAuthor(res.data)
             })
             .catch(err => console.log(err))
@@ -48,12 +51,19 @@ const Poll = (props) => {
 
 
     }, [poll])
-  console.log(props)
     const handleVote = (voteIndex) => {
         poll.options.optionsListTrim[voteIndex].voteCount++
         axios.put('/api/vote', {options: poll.options, pollId})
             .then(res => {
                 console.log('res.data:',res.data)
+                if(!cookiePolls.includes(pollId)){
+                    cookiePolls.push(pollId)
+                    Cookies.set('cookie', JSON.stringify(cookiePolls), {expires: 7})
+                    voted = true
+                    setResultsView(!resultsView)
+                }else{
+                    console.log('user has already voted')
+                }
             })
             .catch(err => console.log(err))
     }
@@ -65,6 +75,9 @@ const Poll = (props) => {
                 <section>
                     <h2> {poll.subject}</h2>
                     {/* poll.options needs ? to work around the issue of not getting data in time of jsx */}
+                    {voted
+                    ? <div>You have already voted</div>
+                    :
                     <FormControl component="fieldset">
                         <FormLabel component="legend">Options</FormLabel>
                         <RadioGroup aria-label="gender" name="gender1" >
@@ -76,13 +89,16 @@ const Poll = (props) => {
                             })}</span>
                         </RadioGroup>
                     </FormControl>
+                    }
                 </section>
                 <section>
                     <h3>Poll Created By: {pollAuthor.username}</h3>
                     <img className='poll-author-profile-img' src={pollAuthor.profile_picture}/>
                 </section>
             </div>
-            <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button>   
+            {!voted &&
+                <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button>   
+            }
             <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>   
             {resultsView && <Results pollId={pollId}/>}
             <section className='comments'>
