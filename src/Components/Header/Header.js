@@ -13,8 +13,6 @@ const Header = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     const [dropDown, setDropDown] = useState(false)
-    console.log('cookie info: ',Cookies.get() )
-
 
     const handleSignOut = () => {
         axios.get(`/api/logout`)
