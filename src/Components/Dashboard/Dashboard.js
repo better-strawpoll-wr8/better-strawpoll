@@ -3,6 +3,7 @@ import React, { userState, useEffect, useState } from 'react'
 import Header from '../Header/Header'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
+import Cookies from 'js-cookie'
 //Styling Imports
 import './Dashboard.scss'
 import Snackbar from '@material-ui/core/Snackbar'
@@ -12,8 +13,8 @@ import { Pie } from 'react-chartjs-2';
 const Dashboard = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
-    console.log('user:', user)
-    console.log(user)
+
+
     const [recentlyCreated, setRecentlyCreated] = useState([])
     const [recentlyEnded, setRecentlyEnded] = useState([])
 
@@ -48,6 +49,8 @@ const Dashboard = (props) => {
     useEffect(() => {
         getRecentPolls()
         getEndedPolls()
+
+        // console.log('cookie info: ',Cookies.get('cookie') )
     }, [])
 
 

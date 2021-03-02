@@ -3,6 +3,7 @@ import {withRouter, Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {updateUser} from '../../redux/reducer'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 //Styling Imports
 import './Header.scss'
 import logo from '../../img/logo.png'
@@ -12,6 +13,8 @@ const Header = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     const [dropDown, setDropDown] = useState(false)
+    console.log('cookie info: ',Cookies.get() )
+
 
     const handleSignOut = () => {
         axios.get(`/api/logout`)
@@ -27,7 +30,6 @@ const Header = (props) => {
         props.history.push('/')
     }
 
-    console.log(props)
     return (
         <div className='header'>
             <Link to='/' className='drop-down-link'>
