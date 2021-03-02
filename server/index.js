@@ -23,7 +23,16 @@ massive({
 }).then(db => {
     app.set('db', db)
     console.log('db connected')
-    app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`))
+    const server = app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`))
+
+    const io = require('socket.io')(server, {
+        cors: {origin: "*"}
+    })
+    io.on('connection', (socket) => {
+        socket.on('updatedata', () => {
+            io.emit('updatedata')
+        })
+    })
 })
 
 //Auth Endpoints

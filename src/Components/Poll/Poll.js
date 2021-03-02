@@ -11,7 +11,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import './Poll.scss'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
-
+import {io} from 'socket.io-client';
 
 const Poll = (props) => {
     const user = useSelector(state => state.user)
@@ -24,6 +24,8 @@ const Poll = (props) => {
     const pollId = props.match.params.poll_id
     const authorId = poll.user_id
     // console.log('authorId: ',authorId)
+
+    const socket = io("http://localhost:7777")
 
     useEffect(() =>  {
         axios.get(`/api/poll/${pollId}`)
@@ -64,6 +66,7 @@ const Poll = (props) => {
                 console.log('res.data:',res.data)
             })
             .catch(err => console.log(err))
+        socket.emit('updatedata')
     }
 
     const handleResults = () => {
