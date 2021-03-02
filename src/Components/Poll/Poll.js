@@ -1,5 +1,5 @@
-import React, {userState, useEffect, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React, { userState, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Header from '../Header/Header'
 import Results from '../Results/Results'
 import ShareSocials from '../ShareSocials/ShareSocials'
@@ -30,38 +30,38 @@ const Poll = (props) => {
     let voted = cookiePolls.includes(pollId)
     const authorId = poll.user_id
 
-    useEffect(() =>  {
+    useEffect(() => {
         axios.get(`/api/poll/${pollId}`)
-        .then(res => {
-            setPoll(res.data)
-        })
-        .catch(err => console.log(err))
+            .then(res => {
+                setPoll(res.data)
+            })
+            .catch(err => console.log(err))
     }, [])
 
 
     //Runs to get authorID only if poll data is received
     useEffect(() => {
-        if(authorId){
+        if (authorId) {
             axios.get(`/api/user/${authorId}`)
-            .then(res=> {
-                setPollAuthor(res.data)
-            })
-            .catch(err => console.log(err))
+                .then(res => {
+                    setPollAuthor(res.data)
+                })
+                .catch(err => console.log(err))
         }
 
 
     }, [poll])
     const handleVote = (voteIndex) => {
         poll.options.optionsListTrim[voteIndex].voteCount++
-        axios.put('/api/vote', {options: poll.options, pollId})
+        axios.put('/api/vote', { options: poll.options, pollId })
             .then(res => {
-                console.log('res.data:',res.data)
-                if(!cookiePolls.includes(pollId)){
+                console.log('res.data:', res.data)
+                if (!cookiePolls.includes(pollId)) {
                     cookiePolls.push(pollId)
-                    Cookies.set('cookie', JSON.stringify(cookiePolls), {expires: 7})
+                    Cookies.set('cookie', JSON.stringify(cookiePolls), { expires: 7 })
                     voted = true
                     setResultsView(!resultsView)
-                }else{
+                } else {
                     console.log('user has already voted')
                 }
             })
@@ -69,44 +69,51 @@ const Poll = (props) => {
     }
 
     return (
-        <>
+        <main className='whole-component'>
             <Header />
             <div className='poll'>
-                <section>
-                    <h2> {poll.subject}</h2>
-                    {/* poll.options needs ? to work around the issue of not getting data in time of jsx */}
-                    {voted
-                    ? <div>You have already voted</div>
-                    :
-                    <FormControl component="fieldset">
-                        <FormLabel component="legend">Options</FormLabel>
-                        <RadioGroup aria-label="gender" name="gender1" >
-                        <span className='options'>{poll.options?.optionsListTrim.map((e, i) => {
-                            return (
-                                <div key={i}>
-                                    <FormControlLabel value={`${i}`} control={<Radio />} label={e.optionName} onClick={() => setVoteIndex(i)}/>
-                                </div>)
-                            })}</span>
-                        </RadioGroup>
-                    </FormControl>
-                    }
-                </section>
-                <section>
+                <section className='author-box'>
                     <h3>Poll Created By: {pollAuthor.username}</h3>
-                    <img className='poll-author-profile-img' src={pollAuthor.profile_picture}/>
+                    <img className='poll-author-profile-img' src={pollAuthor.profile_picture} />
                 </section>
+                <div className='poll-and-buttons'>
+                    <section className='poll-box'>
+                        <h2> {poll.subject}</h2>
+                        {/* poll.options needs ? to work around the issue of not getting data in time of jsx */}
+                        {voted
+                            ? <div>You have already voted</div>
+                            :
+                            <FormControl component="fieldset">
+                                <FormLabel component="legend">Options</FormLabel>
+                                <RadioGroup aria-label="gender" name="gender1" >
+                                    <span className='options'>{poll.options?.optionsListTrim.map((e, i) => {
+                                        return (
+                                            <div key={i}>
+                                                <FormControlLabel value={`${i}`} control={<Radio />} label={e.optionName} onClick={() => setVoteIndex(i)} />
+                                            </div>)
+                                    })}</span>
+                                </RadioGroup>
+                            </FormControl>
+                        }
+                    </section>
+                </div>
+                {!voted &&
+                    <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button>
+                }
+                <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>
             </div>
-            {!voted &&
-                <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button>   
-            }
-            <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>   
-            {resultsView && <Results pollId={pollId}/>}
+            <div className='results-box'>
+
+                <div className='results'>
+                    {resultsView && <Results pollId={pollId} />}
+                </div>
+            </div>
             <section className='comments'>
                 <h1>Comments</h1>
             </section>
             <h2>Share this poll!</h2>
-            <ShareSocials shareUrl={`/api/poll/${pollId}`}/>
-        </>
+            <ShareSocials shareUrl={`/api/poll/${pollId}`} />
+        </main >
     )
 }
 
