@@ -43,10 +43,10 @@ module.exports = {
     },
 
     getUserById: async (req, res) => {
-        const { id } = req.params
+        const { authorId  } = req.params
         const db = req.app.get('db')
-        console.log('id: ', id)
-        const user = await db.users.get_user_by_id([id])
+        console.log('id: ', authorId)
+        const [user] = await db.users.get_user_by_id([authorId])
         res.status(200).send(user)
     },
 

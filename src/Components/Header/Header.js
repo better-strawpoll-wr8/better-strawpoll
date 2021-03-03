@@ -75,7 +75,7 @@ const Header = (props) => {
                         </div>                     
                     </section>
                 </Menu>
-                    {dropDown && 
+                    {/* {dropDown && 
                         <section className='drop-down-menu'>
                             <div className='menu-profile-flex-box'> 
                                 <img src={user.profile_picture} alt='user profile pic' className='menu-profile-pic' onClick={() => setDropDown(!dropDown)}/>
@@ -86,7 +86,7 @@ const Header = (props) => {
                             <Link to={`/${user.id}/settings`} className='drop-down-links'>Settings</Link>
                             <Link className='drop-down-links' onClick={handleSignOut}>Sign Out</Link>                        
                         </section>
-                    }
+                    } */}
                 </div>
             </nav>
         </div>

@@ -4,7 +4,7 @@ import {withRouter, Link} from 'react-router-dom'
 import Header from '../Header/Header'
 import Results from '../Results/Results'
 import ShareSocials from '../ShareSocials/ShareSocials'
-import Comments from '../Comments/Comments'
+import Comments from '../Comments/comments'
 import Cookies from 'js-cookie'
 //Styling Imports
 import Radio from '@material-ui/core/Radio';
@@ -47,6 +47,7 @@ const Poll = (props) => {
             axios.get(`/api/user/${authorId}`)
                 .then(res => {
                     setPollAuthor(res.data)
+                    console.log('in axios call, authorID:', res.data)
                 })
                 .catch(err => console.log(err))
 

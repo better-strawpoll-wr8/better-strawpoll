@@ -27,26 +27,19 @@ const Comments = (props) => {
         .catch(err => console.log(err))
     }
 
-    const getCommentInfo = (id) => {
-        console.log('in getcommentinfo id is: ',id)
-        axios.get(`/api/user/${id}`)
-            .then(res => {
-                return (
-                    <div>
-                        {res.data.username}
-                    </div>
+    // const getCommentInfo = (id) => {
+    //     console.log('in getcommentinfo id is: ',id)
+    //     axios.get(`/api/user/${id}`)
+    //         .then(res => {
+    //             return (
+    //                 <div>
+    //                     {res.data.username}
+    //                 </div>
                         
-                    )
-            })
-            .catch(err => console.log(err))
-
-        // return (
-        //     <div>
-        //         <img src={commentUser.profile_picture}/>
-        //         <h3>{commentUser.username}</h3>
-        //     </div>
-        // )
-    }
+    //                 )
+    //         })
+    //         .catch(err => console.log(err))
+    // }
     
     const getComments = () => {
         axios.get(`/api/comments/${pollId}`)
@@ -58,7 +51,7 @@ const Comments = (props) => {
     const mappedComments = pollComment.map((comments, index) => {
         return (
             <div className='comment-container' key={index} >
-                {() => getCommentInfo(comments.user_id)}
+                {/* {() => getCommentInfo(comments.user_id)} */}
                 <p className='commentText'>{comments.comment}</p>
             </div>
         )

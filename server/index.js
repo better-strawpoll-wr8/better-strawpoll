@@ -49,7 +49,7 @@ app.get('/api/polls/:id', mainCtrl.getPolls) // gets user's polls by user id
 app.get('/api/poll/:poll_id', mainCtrl.getPoll)
 app.get('/api/recent_polls/', mainCtrl.getRecentPolls) 
 app.get('/api/ended_polls/', mainCtrl.getEndedPolls)
-app.get('/api/user/:id', mainCtrl.getUserById)
+app.get('/api/user/:authorId', mainCtrl.getUserById)
 app.put('/api/vote', mainCtrl.vote)
 
 //           Main Comments
