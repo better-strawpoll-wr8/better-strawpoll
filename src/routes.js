@@ -8,6 +8,7 @@ import Poll from './Components/Poll/Poll'
 import Results from './Components/Results/Results'
 import Settings from './Components/Settings/Settings'
 import UsersPolls from './Components/UsersPolls/UsersPolls'
+import Comments from './Components/Comments/comments'
 
 export default (
     <Switch>
@@ -18,5 +19,6 @@ export default (
         <Route exact path= '/polls/:poll_id' component={Poll} />
         <Route path= '/polls/:poll_id/results' component={Results} />
         <Route path= '/:id/settings' component={Settings} />
+        
     </Switch>
 )
