@@ -58,7 +58,7 @@ const Poll = (props) => {
                 console.log('res.data:',res.data)
             })
             .catch(err => console.log(err))
-        socket.emit('updatedata')
+        socket.emit('updatedata', pollId)
     }
 
     return (

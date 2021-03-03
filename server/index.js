@@ -32,8 +32,8 @@ massive({
         cors: {origin: "*"}
     })
     io.on('connection', (socket) => {
-        socket.on('updatedata', () => {
-            io.emit('updatedata')
+        socket.on('updatedata', (pollId) => {
+            io.emit('updatedata', pollId)
         })
     })
 })

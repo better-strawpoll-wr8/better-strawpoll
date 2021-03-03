@@ -10,30 +10,37 @@ const Results = (props) => {
 
     const socket = io("http://localhost:7777")
 
-    const colors = graphData.options?.optionsListTrim.map(() => '#' + Math.floor(Math.random()*16777215).toString(16))
+    useEffect(() => {
+        axios.get(`/api/poll/${props.pollId}`)
+            .then(res => setGraphData(res.data))
+    }, [])
+
+    if (!localStorage.getItem('colors')) {
+        localStorage.setItem('colors', graphData.options?.optionsListTrim.map(() => '#' + Math.floor(Math.random()*16777215).toString(16)));
+    }
+
+    console.log(localStorage.getItem('colors'))
+
     const data = {
         labels: graphData.options?.optionsListTrim.map(el => el.optionName),
         datasets: [
             {
                 label: '# of votes',
                 data: graphData.options?.optionsListTrim.map(el => el.voteCount),
-                backgroundColor: colors,
-                borderColor: colors,
+                backgroundColor: localStorage.getItem('colors').split(','),
+                borderColor: localStorage.getItem('colors').split(','),
                 borderWidth: 1
             }
         ]
     }
 
-    socket.on('updatedata', () => {
+    socket.on('updatedata', (pollId) => {
         console.log('update')
-        axios.get(`/api/poll/${props.pollId}`)
+        if (pollId === props.pollId) {
+            axios.get(`/api/poll/${props.pollId}`)
             .then(res => setGraphData(res.data))
+        }
     })
-
-    useEffect(() => {
-        axios.get(`/api/poll/${props.pollId}`)
-            .then(res => setGraphData(res.data))
-    }, [])
 
     return (
         <Pie data={data}/>
