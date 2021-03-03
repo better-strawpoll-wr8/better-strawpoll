@@ -92,6 +92,8 @@
     .boxes{
         display: flex;
         justify-content: center;
+        // width: 50%;
+        // height: 50%;
     }
 
 .results{
@@ -108,12 +110,17 @@
         justify-content: space-around;
         padding: 0px 10px;
         z-index: 1;
+        
     }
+
 
     .boxes{
         display: flex;
         flex-direction: column;
-
+        margin-right: 30px;
+    }
+    .tabs{
+        margin-right: 35px;
     }
 
     .recently-created-polls-box {
@@ -142,20 +149,35 @@
     }
 
     .recently-created-polls-box {
-        font-size: 20px;
+        font-size: 17px;
     }
 
     .recently-ended-poll-box {
-        font-size: 20px;
+        font-size: 17px;
+    }
+
+    .tabs{
+        margin-right: 3px;
     }
 
     .login {
         font-size: 20px;
     }
+
+.boxes{
+    display: flex;
+    flex-direction: column;
+    margin-right: 0px;
+}
+
     .create-poll-tab {
         font-size: 20px;
     }
     .your-polls-text {
         font-size: 20px;
+    }
+
+    .mapped-poll{
+        width: 45%;
     }
 }

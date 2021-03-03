@@ -24,9 +24,9 @@ const Header = (props) => {
         setDropDown(!dropDown)
     }
 
-    const redirectToDash = () => {
-        props.history.push('/')
-    }
+    // const redirectToDash = () => {
+    //     props.history.push('/')
+    // }
 
     return (
         <div className='header'>

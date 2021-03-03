@@ -41,11 +41,13 @@ const Comments = (props) => {
     return (
         <section className='commentBox'>
             {user.id && <div className='writeComment'>
-                <input
+                <textarea
                 className='comment-input'
                 name='commentBody'
                 placeholder=''
                 value={comment}
+                rows='4'
+                cols='50'
                 onChange={e => setComment(e.target.value)}
                 />
                 <button className='comment-button' onClick={() => createComment()}>Add Comment</button>
