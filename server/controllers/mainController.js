@@ -67,7 +67,7 @@ module.exports = {
         const { user_id, comment } = req.body
         const db = req.app.get('db')
         const [comment1] = await db.comments.create_comment([user_id, poll_id, comment])
-        res.status(200).send(comment1)
+        res.sendStatus(200)
     },
 
     deleteComment: async (req, res) => {
@@ -78,9 +78,9 @@ module.exports = {
     },
 
     getComments: async (req, res) => {
-        const { id } = req.params
+        const { poll_id } = req.params
         const db = req.app.get('db')
-        const comments = await db.comments.get_comments([id])
+        const comments = await db.comments.get_comments([poll_id])
         res.status(200).send(comments)
     }
 

@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
+const Cookies = require('js-cookie')
 const authCtrl = require('./controllers/authController')
 const mainCtrl = require('./controllers/mainController')
 const userCtrl = require('./controllers/userController')
@@ -63,7 +64,8 @@ app.put('/api/vote', mainCtrl.vote)
 //           Main Comments
 app.post('/api/comment/:poll_id', mainCtrl.createComment)
 app.delete('/api/comment/:id', mainCtrl.deleteComment)
-app.get('/api/comments/:id', mainCtrl.getComments) // get comments by poll id
+app.get('/api/comments/:poll_id', mainCtrl.getComments) // get comments by poll id
+
 
 
 app.use(express.static(`${__dirname}/../build`))

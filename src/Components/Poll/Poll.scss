@@ -2,9 +2,43 @@
 @import "../../scss/mixins";
 @import "../../scss/variables";
 
+.whole-component{
+    width: 100vw;
+    height: 100vh;
+    // background: #b8ae81;
+    background: $primary-color;
+    justify-content: space-around;
+    box-sizing: border-box;
+    z-index: 1;
+    overflow: scroll;
+
+
+    .dash-box{
+        width:100%;
+        z-index: 1;
+        .back-to-dash{
+            margin: 15px 10px;
+            background: #b8ae81;
+            box-shadow: 1px 1px 10px rgb(0, 0, 0);
+            cursor: pointer;
+          
+        }
+    }
+    
+
 .poll {
-    @include flexSpaceEvenly(row);
-    margin: 60px;
+    // @include flexSpaceEvenly(row);
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    background: #b8ae81;
+    box-shadow: 1px 1px 10px rgb(0, 0, 0);
+    z-index: 1;
+    padding: 5px 5px;
+
+
+.author-box{
+    margin: 10px 100px;
 
     .poll-author-profile-img{
         width: 200px;
@@ -14,11 +48,67 @@
         box-shadow: 2px 2px 3px rgb(0, 0, 0);
         margin-right:15px;
     }
+
 }
-.vote-buttons{
-    margin-left: 30px;
+
+    .poll-and-buttons{
+        border: solid black;
+        box-shadow: 1px 1px 10px rgb(0, 0, 0);
+        padding: 10px 10px 10px 10px;
+        margin: 10px 50px;
+        height: 40%;
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .the-buttons{
+            display: flex;
+            justify-content: center;
+            .vote-buttons{
+                margin-left: 30px;
+                height: 40px;
+                display: flex;
+            }
+        }
+
+    }
 }
+
 
 .comments{
     margin-top: 50px;
+    background: #b8ae81;
+    box-shadow: 1px 1px 10px rgb(0, 0, 0);
+    z-index: 1;
+    padding: 5px 5px;
+    margin: 20px;
+
+}
+
+.results-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // box-shadow: 1px 1px 10px rgb(0, 0, 0);
+    // padding: 5px 5px;
+    // margin: 20px 20px;
+
+
+    
+.results{
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 50%;
+
+
+}
+
+
+}
+
+
 }
