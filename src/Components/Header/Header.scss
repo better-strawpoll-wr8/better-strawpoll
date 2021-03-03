@@ -16,77 +16,78 @@
     padding: 0px 15px;
     position: relative;
 
+    
+    
+    
+}
 
-    .drop-down-menu{
-        -webkit-animation: nav-anim-left 0.6s;
-        /* Fx 5+ */
-         
-        -moz-animation: nav-anim-left 0.6s;
-        /* Opera 12+ */
-         
-        -o-animation: nav-anim-left 0.6s;
-        /* IE 10+, Fx 29+ */
-         
-        animation: nav-anim-left 0.6s;
-        margin-right:-25px;
-        margin-top: 450px;
-        @include flexCenter(column);
-        width:280px;
-        height: 400px;
-        background: $primary-color;
-        // border: 2px solid rgb(75, 75, 75);
-        box-shadow: 2px 2px 3px #888, -2px 2px 3px #888;
-        cursor: pointer;
+.menu-profile-pic h4{
 
-    }
+    margin-bottom: 20px;
+}
 
-    .menu-profile-pic h4{
-        margin-bottom: 20px;
-    }
+.profile-flex-box{
+    @include flexCenter(row);
+}
 
-    .profile-flex-box{
-        @include flexCenter(row);
-    }
+.profile-pic{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgb(75, 75, 75);
+    box-shadow: 2px 2px 3px rgb(0, 0, 0);
+    margin-right:15px;
 
-    .profile-pic{
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        border: 2px solid rgb(75, 75, 75);
-        box-shadow: 2px 2px 3px rgb(0, 0, 0);
-        margin-right:15px;
+}
 
-    }
+.logo{
+    margin-top:10px;
+    margin-left: 30px;
+    width: 120px;
 
-    .logo{
-        margin-top:10px;
-        margin-left: 30px;
-        width: 120px;
+}
 
-    }
-
-    .username{
-        margin-right: 20px;
-        cursor: pointer;
+.username{
+    margin-right: 20px;
+    cursor: pointer;
 
 
-    }
+}
 
-    .drop-down-links{
-        margin-top: 20px;
+.drop-down-links p{
+    margin-top: 20px;
+    text-decoration: none;
+}
 
+.menu-profile-pic{
+    margin-bottom: 10px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid rgb(75, 75, 75);
+    box-shadow: 2px 2px 3px rgb(0, 0, 0);
 
-    }
+}
 
-    .menu-profile-pic{
-        margin-bottom: 10px;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        border: 2px solid rgb(75, 75, 75);
-        box-shadow: 2px 2px 3px rgb(0, 0, 0);
-
-    }
+.drop-down-menu{
+    -webkit-animation: nav-anim-left 0.6s;
+    /* Fx 5+ */
+     
+    -moz-animation: nav-anim-left 0.6s;
+    /* Opera 12+ */
+     
+    -o-animation: nav-anim-left 0.6s;
+    /* IE 10+, Fx 29+ */
+     
+    animation: nav-anim-left 0.6s;
+    margin-right:-25px;
+    @include flexCenter(column);
+    width:280px;
+    height: 400px;
+    background: $primary-color;
+    // border: 2px solid rgb(75, 75, 75);
+    box-shadow: 2px 2px 3px #888, -2px 2px 3px #888;
+    cursor: pointer;
 
     .header-links{
         margin-right: 25px;
