@@ -113,7 +113,6 @@ const Poll = (props) => {
                 <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>
             </div>
             <div className='results-box'>
-
                 <div className='results'>
                     {resultsView && <Results pollId={pollId} />}
                 </div>
