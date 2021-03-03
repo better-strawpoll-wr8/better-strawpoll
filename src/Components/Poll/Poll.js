@@ -1,9 +1,10 @@
 import React, { userState, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import {withRouter, Link} from 'react-router-dom'
 import Header from '../Header/Header'
 import Results from '../Results/Results'
 import ShareSocials from '../ShareSocials/ShareSocials'
-import Comments from '../Comments/comments'
+import Comments from '../Comments/Comments'
 import Cookies from 'js-cookie'
 //Styling Imports
 import Radio from '@material-ui/core/Radio';
@@ -107,23 +108,24 @@ const Poll = (props) => {
                         }
                     </section>
                 </div>
-                {!voted &&
-                    <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button>
-                }
-                <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>
+
+
             </div>
+            {!voted &&
+                    <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button> 
+                } 
+            <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>   
             <div className='results-box'>
                 <div className='results'>
                     {resultsView && <Results pollId={pollId} />}
                 </div>
             </div>
-            <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button>   
-            <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>   
-            {resultsView && <Results pollId={pollId}/>}
+            <h2>Comments</h2>
             {<section className='comments'>
+                {!user.id && <h4>You must be <Link to='/login'>logged in</Link> to leave a comment.</h4>}
                 <Comments pollId={pollId}/>
             </section>}
-            <h2>Share this poll!</h2>
+            <h2>Share this poll</h2>
             <ShareSocials shareUrl={`/api/poll/${pollId}`} />
         </main >
     )

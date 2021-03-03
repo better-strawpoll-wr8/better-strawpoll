@@ -8,7 +8,7 @@ import Poll from './Components/Poll/Poll'
 import Results from './Components/Results/Results'
 import Settings from './Components/Settings/Settings'
 import UsersPolls from './Components/UsersPolls/UsersPolls'
-import Comments from './Components/Comments/comments'
+import Comments from './Components/Comments/Comments'
 
 export default (
     <Switch>
