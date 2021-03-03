@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Header from '../Header/Header'
 import Results from '../Results/Results'
 import ShareSocials from '../ShareSocials/ShareSocials'
+import Comments from '../Comments/comments'
 import Cookies from 'js-cookie'
 //Styling Imports
 import Radio from '@material-ui/core/Radio';
@@ -112,14 +113,16 @@ const Poll = (props) => {
                 <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>
             </div>
             <div className='results-box'>
-
                 <div className='results'>
                     {resultsView && <Results pollId={pollId} />}
                 </div>
             </div>
-            <section className='comments'>
-                <h1>Comments</h1>
-            </section>
+            <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button>   
+            <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>   
+            {resultsView && <Results pollId={pollId}/>}
+            {<section className='comments'>
+                <Comments pollId={pollId}/>
+            </section>}
             <h2>Share this poll!</h2>
             <ShareSocials shareUrl={`/api/poll/${pollId}`} />
         </main >
