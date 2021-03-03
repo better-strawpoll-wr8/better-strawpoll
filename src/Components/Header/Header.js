@@ -28,16 +28,14 @@ const Header = (props) => {
         setDropDown(!dropDown)
     }
 
+    
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget)
     }
       const handleClose = () => {
         setAnchorEl(null);
     }
-    const redirectToDash = () => {
-        props.history.push('/')
-    }
-
+  
     return (
         <div className='header'>
             <Link to='/' className='drop-down-link'>

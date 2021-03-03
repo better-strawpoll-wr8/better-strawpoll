@@ -1,23 +1,21 @@
 import axios from 'axios'
-import React, { userState, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../Header/Header'
-import { useDispatch, useSelector } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
-import Cookies from 'js-cookie'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { Pie } from 'react-chartjs-2';
+
 //Styling Imports
 import './Dashboard.scss'
-import Snackbar from '@material-ui/core/Snackbar'
-import { Pie } from 'react-chartjs-2';
 
 
 const Dashboard = (props) => {
     const user = useSelector(state => state.user)
-    const dispatch = useDispatch()
-
 
     const [recentlyCreated, setRecentlyCreated] = useState([])
     const [recentlyEnded, setRecentlyEnded] = useState([])
 
+//The bellow functions act as links to redirect the user to other views.
     const createNewPoll = () => {
         props.history.push('/create-poll')
     }
@@ -30,6 +28,7 @@ const Dashboard = (props) => {
         props.history.push('/login')
     }
 
+    //Gets all the recently created polls by date and time created.
     const getRecentPolls = () => {
         axios.get('/api/recent_polls/')
             .then(res => {
@@ -38,6 +37,7 @@ const Dashboard = (props) => {
             .catch(err => console.log(err))
     }
 
+    //Gets the last 10 expired polls.
     const getEndedPolls = () => {
         axios.get('/api/ended_polls/')
             .then(res => {
@@ -54,9 +54,8 @@ const Dashboard = (props) => {
     }, [])
 
 
-
     const mappedRecentPolls = recentlyCreated.map(poll => {
-
+//Assigns random colors to colors variable which will be applied to the pie chart.
         const colors = poll.options?.optionsListTrim.map(() => '#' + Math.floor(Math.random() * 16777215).toString(16))
 
         const data = {
@@ -71,7 +70,7 @@ const Dashboard = (props) => {
                 }
             ]
         }
-
+//Rearranges the timestamp of date and time creadted and expired to be more easily read and broken into date and time for each mapped poll.
         const dateCreatedStr = JSON.stringify(poll.date_created).replace(/["]+/g, '')
         const dateExpStr = JSON.stringify(poll.expiry_date).replace(/["]+/g, '')
 
@@ -97,6 +96,7 @@ const Dashboard = (props) => {
     })
 
     const mappedEndedPolls = recentlyEnded.map(poll => {
+//Assigns random colors to colors variable which will be applied to the pie chart.
 
         const colors = poll.options?.optionsListTrim.map(() => '#' + Math.floor(Math.random() * 16777215).toString(16))
 
@@ -112,7 +112,7 @@ const Dashboard = (props) => {
                 }
             ]
         }
-
+//Rearranges the timestamp of date and time creadted and expired to be more easily read and broken into date and time for each mapped poll.
         const dateCreatedStr = JSON.stringify(poll.date_created).replace(/["]+/g, '')
         const dateExpStr = JSON.stringify(poll.expiry_date).replace(/["]+/g, '')
 
