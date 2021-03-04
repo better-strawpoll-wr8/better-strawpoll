@@ -22,7 +22,7 @@ const Landing = (props) => {
     const [verPassword, setVerPassword] = useState('')
     const [profilePic, setProfilePic] = useState('')
     const [registerView, setRegisterView] = useState(false)
-    const [loginView, setLoginView] = useState(false)
+    // const [loginView, setLoginView] = useState(false)
 
     const handleRegister = () => {
         if( password && password === verPassword){

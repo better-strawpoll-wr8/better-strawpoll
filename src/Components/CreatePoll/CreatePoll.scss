@@ -8,7 +8,9 @@
     // background: #b8ae81;
     background: $primary-color;
     justify-content: space-around;
+    justify-content: center;
     box-sizing: border-box;
+    align-items: center;
     z-index: 1;
 
     .content{
@@ -16,6 +18,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        justify-content: center;
         padding: 0px 10px;
         z-index: 1;
     }
@@ -23,15 +26,17 @@
     .create-button{
         // background: $primary-color;
         background: #b8ae81;
-        width: 25vw;
         box-shadow: 1px 1px 10px rgb(0, 0, 0);
         cursor: pointer;
-        width:100%;
+        width:25%;
         z-index: 1;
         font-size: 30px;
+        margin: 50px;
+        justify-content: center;
+        align-items: center;
     }
     .data{
-        margin: 90px 0px 0px 0px;
+        margin: 20px 0px 0px 0px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -41,10 +46,16 @@
 
     .data-lable{
         font-size: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .data-input{
-        font-size: 25px;
+        font-size: 40px;
         background: #b8ae81;
+        margin: 5px 5px;
     }
+
+
 
 }

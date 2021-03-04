@@ -4,6 +4,9 @@ import {useDispatch, useSelector} from 'react-redux'
 import Header from '../Header/Header'
 //Styling Imports
 import './CreatePoll.scss'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+// import 'fontsource-roboto';
 
 const CreatePoll = (props) => {
     const user = useSelector(state => state.user)
@@ -68,11 +71,11 @@ const CreatePoll = (props) => {
         <div className="create-poll">
             <Header/>
             <main className='content'>
-            <button className='create-button' onClick={() => createPoll()}>Create Poll</button>
                 <div className='data'>
             <label className='data-lable'>
                 Subject:
-                <input
+                <TextField
+                variant="outlined"
                 className='data-input'
                     name="subject"
                     placeholder="Add poll subject/question"
@@ -82,7 +85,8 @@ const CreatePoll = (props) => {
             <label className='data-lable'>Poll Options:
                 {optionsList.map((element, index) => {
                     return (
-                        <input 
+                        <TextField
+                        variant="outlined"
                         className='data-input'
                             key={index}
                             name="option"
@@ -95,18 +99,21 @@ const CreatePoll = (props) => {
             </label>
             <label className='data-lable'>
                 Expiration Date:
-                <input 
+                <TextField
+                variant="outlined"
                 className='data-input'
                     type="date"
                     value={expiryDate}
                     onChange={e => {setExpiryDate(e.target.value)}}/>
-                <input
+                <TextField
+                variant="outlined"
                 className='data-input'
                     type="time"
                     value={expiryTime}
                     onChange={e => setExpiryTime(e.target.value)}/>
             </label>
             </div>
+            <Button className='create-button' onClick={() => createPoll()}>Create Poll</Button>
             </main>
         </div>
     )
