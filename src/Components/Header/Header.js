@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button';
 import 'fontsource-roboto'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 const Header = (props) => {
     const user = useSelector(state => state.user)
@@ -38,6 +40,8 @@ const Header = (props) => {
         props.history.push('/')
     }
 
+    
+
     return (
         <div className='header'>
             <Link to='/' className='drop-down-link'>
@@ -61,6 +65,7 @@ const Header = (props) => {
                 <Menu
                     className='simple-menu'
                     anchorEl={anchorEl}
+                    keepMounted
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
