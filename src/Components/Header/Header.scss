@@ -17,6 +17,10 @@
     position: relative;
 }
 
+.menu-profile-flex-box{
+    @include flexCenter(column);
+}
+
 .menu-profile-pic h4{
 
     margin-bottom: 20px;

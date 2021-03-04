@@ -2,19 +2,43 @@
 @import '../../scss/mixins';
 @import '../../scss/variables';
 
-.comment-button{
-    margin-top: 10px;
+.writeComment{
+    @include flexCenter(row);
 }
 
 .allComments {
     @include flexCenter(column);
 }
 
+.comment-input{
+    width: 900px;
+}
 .comment-container{
-    @include flexCenter(row);
-
+    display:flex;
+    align-items: center;
     width: 80vw;
-    height: 50px;
+    height: 60px;
     background: grey;
-    margin: 2px;
+    margin: 10px;
+    box-shadow: 1px 1px 4px rgb(0, 0, 0);
+
+    .pic-username-container{
+        @include flexCenter(row);
+    
+        .comment-pic{
+            width: 48px;
+            margin: 0 10px 0 30px; 
+            box-shadow: 1px 1px 6px rgb(0, 0, 0);  
+        }
+
+        .comment-username{
+            margin-right:4px;
+        }
+    }
+
+    .commentText{
+        margin-left: 10px;
+        overflow: auto;
+        overflow-wrap: break-word;
+    }
 }
