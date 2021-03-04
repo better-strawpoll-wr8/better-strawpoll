@@ -83,7 +83,7 @@ const Dashboard = (props) => {
         return (
             <div className='mapped-poll'>
                 <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id}>
-                    <h4 className='tlte'> Title: {poll.subject}</h4>
+                    <h4 className='tlte'>{poll.subject}</h4>
                 </Link>
                 <h4 className='date-created'>Date Created: {dateCreated} Time: {timeCreated}</h4>
                 <h4 className='expiry-date'>Expires: {dateExp} Time: {timeExp}</h4>
@@ -125,7 +125,7 @@ const Dashboard = (props) => {
         return (
             <div className='mapped-poll'>
                 <Link to={`/polls/${poll.poll_id}`} key={poll.poll_id}>
-                    <h4 className='tlte'> Title: {poll.subject}</h4>
+                    <h4 className='tlte'>{poll.subject}</h4>
                 </Link>
                 <h4 className='date-created'>Date Created: {dateCreated} Time: {timeCreated}</h4>
                 <h4 className='expiry-date'>Expired: {dateExp} Time: {timeExp}</h4>

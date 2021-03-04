@@ -152,12 +152,6 @@ const Settings = (props) => {
                     </div>
                 )}
             </div>
-            {/* <input onChange={(e) => setUsername(e.target.value)}></input>
-            <button onClick={editUsername}>Edit Username</button>
-            <input onChange={(e) => setEmail(e.target.value)}></input>
-            <button onClick={editEmail}>Edit Email</button>
-            <input onChange={(e) => setPassword(e.target.value)} type='password'></input>
-            <button onClick={editPassword}>Edit Password</button> */}
         </div>
     )
 }

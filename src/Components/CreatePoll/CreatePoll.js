@@ -66,7 +66,7 @@ const CreatePoll = (props) => {
 
     return (
         <div className="create-poll">
-            <Header/>
+            <Header history={props.history}/>
             <main className='content'>
             <button className='create-button' onClick={() => createPoll()}>Create Poll</button>
                 <div className='data'>

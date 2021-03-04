@@ -15,10 +15,6 @@
     z-index: 1000;
     padding: 0px 15px;
     position: relative;
-
-    
-    
-    
 }
 
 .menu-profile-pic h4{
@@ -48,15 +44,9 @@
 }
 
 .username{
-    margin-right: 20px;
     cursor: pointer;
 
 
-}
-
-.drop-down-links p{
-    margin-top: 20px;
-    text-decoration: none;
 }
 
 .menu-profile-pic{
@@ -70,17 +60,6 @@
 }
 
 .drop-down-menu{
-    -webkit-animation: nav-anim-left 0.6s;
-    /* Fx 5+ */
-     
-    -moz-animation: nav-anim-left 0.6s;
-    /* Opera 12+ */
-     
-    -o-animation: nav-anim-left 0.6s;
-    /* IE 10+, Fx 29+ */
-     
-    animation: nav-anim-left 0.6s;
-    margin-right:-25px;
     @include flexCenter(column);
     width:280px;
     height: 400px;
@@ -95,5 +74,14 @@
         display: flex;
         justify-content: space-between;
     }
+
+}
+
+.nav-links{
+    margin: 0 30px 0 30px;
+}
+
+.menu-item{
+    @include flexCenter(column);
 
 }
