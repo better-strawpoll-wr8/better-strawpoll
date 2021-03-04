@@ -17,10 +17,12 @@ const CreatePoll = (props) => {
     let date = new Date()
     date.setDate(date.getDate() + 7)
     
+
     const [subject, setSubject] = useState('')
     const [optionsList, setOptions] = useState([{optionName: '', voteCount: 0}, {optionName: '', voteCount: 0}, {optionName: '', voteCount: 0}])
     const [expiryDate, setExpiryDate] = useState(date.toISOString().slice(0, 10))
     const [expiryTime, setExpiryTime] = useState('00:00')
+    
 
     const createPoll = () => {
         const optionsListTrim = optionsList.filter(option => option.optionName)
@@ -67,7 +69,12 @@ const CreatePoll = (props) => {
        loggedinView()
     }, [])
 
+    
+
     return (
+
+
+        
         <div className="create-poll">
             <Header history={props.history}/>
             <main className='content'>
@@ -102,13 +109,13 @@ const CreatePoll = (props) => {
                 <TextField
                 variant="outlined"
                 className='data-input'
-                    type="date"
+                    type="date"   //try manipulating this
                     value={expiryDate}
                     onChange={e => {setExpiryDate(e.target.value)}}/>
                 <TextField
                 variant="outlined"
                 className='data-input'
-                    type="time"
+                    type="time"  //try manipulating this
                     value={expiryTime}
                     onChange={e => setExpiryTime(e.target.value)}/>
             </label>
