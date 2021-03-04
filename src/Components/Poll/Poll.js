@@ -32,7 +32,7 @@ const Poll = (props) => {
     let voted = cookiePolls.includes(pollId)
     const authorId = poll.user_id
 
-    const socket = io("165.232.156.25")
+    const socket = io("http://localhost:7777")
     
     useEffect(() => {
         axios.get(`/api/poll/${pollId}`)
@@ -76,7 +76,7 @@ const Poll = (props) => {
 
     return (
         <main className='whole-component'>
-            <Header />
+            <Header history={props.history} />
             <div className='poll'>
                 <section className='author-box'>
                     <h3>Poll Created By: {pollAuthor.username}</h3>

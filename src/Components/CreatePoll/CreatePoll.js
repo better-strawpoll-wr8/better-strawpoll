@@ -69,7 +69,7 @@ const CreatePoll = (props) => {
 
     return (
         <div className="create-poll">
-            <Header/>
+            <Header history={props.history}/>
             <main className='content'>
                 <div className='data'>
             <label className='data-lable'>
