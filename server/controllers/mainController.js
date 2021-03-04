@@ -64,9 +64,9 @@ module.exports = {
 
     createComment: async (req, res) => {
         const { poll_id } = req.params
-        const { user_id, comment } = req.body
+        const { user_id, username, profile_picture, comment } = req.body
         const db = req.app.get('db')
-        const [comment1] = await db.comments.create_comment([user_id, poll_id, comment])
+        const [comment1] = await db.comments.create_comment([user_id, username, profile_picture, poll_id, comment])
         res.sendStatus(200)
     },
 

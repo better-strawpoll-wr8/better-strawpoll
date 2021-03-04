@@ -10,37 +10,29 @@ import 'fontsource-roboto';
 const Comments = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
-    console.log('user:', user)
-    //const pollId = useSelector(state => state.poll)
     const pollId = props.pollId
     const [comment, setComment] = useState('')
-    const [commentUser, setCommentUser] = useState({})
+    const [commentAuthor, setCommentAuthor] = useState({})
     const [pollComment, setPollComment] = useState([])
     const user_id = user.id 
+    const username = user.username
+    const profile_picture = user.profile_picture
+
     const createComment = () => {
-        console.log('user', user.id)
-        axios.post(`/api/comment/${pollId}`, {user_id, comment})
-        .then(res => {
-            setComment('')
-            getComments()
-        })
-        .catch(err => console.log(err))
+        if(comment.length === 0){
+            alert('You cannot post an empty comment.')
+        }else if(comment.length > 300){
+            alert('You have exceeded the maximum of 300 characters.')
+        }else{
+            axios.post(`/api/comment/${pollId}`, {user_id, username, profile_picture, comment})
+            .then(res => {
+                setComment('')
+                getComments()
+            })
+            .catch(err => console.log(err))
+        }
     }
 
-    // const getCommentInfo = (id) => {
-    //     console.log('in getcommentinfo id is: ',id)
-    //     axios.get(`/api/user/${id}`)
-    //         .then(res => {
-    //             return (
-    //                 <div>
-    //                     {res.data.username}
-    //                 </div>
-                        
-    //                 )
-    //         })
-    //         .catch(err => console.log(err))
-    // }
-    
     const getComments = () => {
         axios.get(`/api/comments/${pollId}`)
         .then(res => {
@@ -48,31 +40,39 @@ const Comments = (props) => {
         })
         .catch(err => console.log(err))
     }
+
     const mappedComments = pollComment.map((comments, index) => {
         return (
             <div className='comment-container' key={index} >
-                {/* {() => getCommentInfo(comments.user_id)} */}
+                <div className='pic-username-container'>
+                    <img src={comments.profile_picture} className='comment-pic'/>
+                    <h5 className='comment-username'>{comments.username}</h5>
+                    <h5>:</h5>
+                </div>
                 <p className='commentText'>{comments.comment}</p>
             </div>
         )
     })
+
     useEffect(() => {
         getComments()
     }, [])
+    
     return (
         <section className='commentBox'>
-            {user.id && <div className='writeComment'>
-                <TextField
-                className='comment-input'
-                name='commentBody'
-                label='Leave a comment'
-                value={comment}
-                rows='4'
-                cols='50'
-                onChange={e => setComment(e.target.value)}
-                />
-                <Button className='comment-button' onClick={() => createComment()}>Add Comment</Button>
-            </div>}
+            {user.id && 
+                <div className='writeComment'>
+                    <TextField
+                    className='comment-input'
+                    name='commentBody'
+                    label='Leave a comment'
+                    value={comment}
+                    multiline
+                    onChange={e => setComment(e.target.value)}
+                    />
+                    <Button className='comment-button' onClick={() => createComment()}>Add Comment</Button>
+                </div>
+            }
             <div className='allComments'>
                 {mappedComments}
             </div>

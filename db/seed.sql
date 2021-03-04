@@ -17,8 +17,10 @@ expiry_date timestamp not null);
 create table comments (
 comment_id SERIAL PRIMARY KEY,
 user_id int references bs_users (id),
+username  VARCHAR(120),
+profile_picture text,
 poll_id int references polls(poll_id),
-comment VARCHAR(120) );
+comment VARCHAR(300) );
 
 
 
