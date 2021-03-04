@@ -19,8 +19,6 @@ const Results = (props) => {
         localStorage.setItem('colors', graphData.options?.optionsListTrim.map(() => '#' + Math.floor(Math.random()*16777215).toString(16)));
     }
 
-    console.log(localStorage.getItem('colors'))
-
     const data = {
         labels: graphData.options?.optionsListTrim.map(el => el.optionName),
         datasets: [

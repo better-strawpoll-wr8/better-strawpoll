@@ -65,7 +65,7 @@ const Poll = (props) => {
                     cookiePolls.push(pollId)
                     Cookies.set('cookie', JSON.stringify(cookiePolls), { expires: 7 })
                     voted = true
-                    setResultsView(!resultsView)
+                    setResultsView(true)
                 } else {
                     console.log('user has already voted')
                 }
