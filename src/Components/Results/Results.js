@@ -8,7 +8,7 @@ import './Results.scss'
 const Results = (props) => {
     const [graphData, setGraphData] = useState({});
 
-    const socket = io("http://localhost:7777")
+    const socket = io("165.232.156.25")
 
     useEffect(() => {
         axios.get(`/api/poll/${props.pollId}`)
