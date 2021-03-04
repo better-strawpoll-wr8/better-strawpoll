@@ -14,12 +14,9 @@
     z-index: 1;
 
     .content{
-        margin: 40px 0px 0px 0px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        justify-content: center;
-        padding: 0px 10px;
+        margin: 50px 0px 0px 0px;
+       @include flexCenter(column);
+        padding: 40px 10px;
         z-index: 1;
     }
    
