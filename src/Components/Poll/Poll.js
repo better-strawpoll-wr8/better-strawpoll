@@ -49,7 +49,6 @@ const Poll = (props) => {
             axios.get(`/api/user/${authorId}`)
                 .then(res => {
                     setPollAuthor(res.data)
-                    console.log('in axios call, authorID:', res.data)
                 })
                 .catch(err => console.log(err))
 
@@ -115,10 +114,12 @@ const Poll = (props) => {
 
 
             </div>
-            {!voted &&
-                    <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button> 
-                } 
-            <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>   
+            <div className='vote-buttons-flex-box'>
+                {!voted &&
+                        <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => handleVote(voteIndex)}>Vote</Button> 
+                    } 
+                <Button className='vote-buttons' variant='contained' id='vote-btn' onClick={() => setResultsView(!resultsView)}>View Results</Button>   
+            </div>
             <div className='results-box'>
                 <div className='results'>
                     {resultsView && <Results pollId={pollId} />}

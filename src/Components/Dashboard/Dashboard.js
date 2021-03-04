@@ -55,7 +55,8 @@ const Dashboard = (props) => {
 
 
     const mappedRecentPolls = recentlyCreated.map(poll => {
-//Assigns random colors to colors variable which will be applied to the pie chart.
+        //Assigns random colors to colors variable which will be 
+        //  applied to the pie chart.
         const colors = poll.options?.optionsListTrim.map(() => '#' + Math.floor(Math.random() * 16777215).toString(16))
 
         const data = {
@@ -70,7 +71,9 @@ const Dashboard = (props) => {
                 }
             ]
         }
-//Rearranges the timestamp of date and time creadted and expired to be more easily read and broken into date and time for each mapped poll.
+        //Rearranges the timestamp of date and time created and 
+        //  expired to be more easily read and broken into date 
+        //  and time for each mapped poll.
         const dateCreatedStr = JSON.stringify(poll.date_created).replace(/["]+/g, '')
         const dateExpStr = JSON.stringify(poll.expiry_date).replace(/["]+/g, '')
 

@@ -14,7 +14,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 
 const Header = (props) => {
-    console.log('props: ', props)
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     const [dropDown, setDropDown] = useState(false)
