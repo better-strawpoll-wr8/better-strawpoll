@@ -1,0 +1,20 @@
+@import '../../scss/reset';
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+.comment-button{
+    margin-top: 10px;
+}
+
+.allComments {
+    @include flexCenter(column);
+}
+
+.comment-container{
+    @include flexCenter(row);
+
+    width: 80vw;
+    height: 50px;
+    background: grey;
+    margin: 2px;
+}
