@@ -67,6 +67,8 @@ const Comments = (props) => {
                 name='commentBody'
                 label='Leave a comment'
                 value={comment}
+                rows='4'
+                cols='50'
                 onChange={e => setComment(e.target.value)}
                 />
                 <Button className='comment-button' onClick={() => createComment()}>Add Comment</Button>

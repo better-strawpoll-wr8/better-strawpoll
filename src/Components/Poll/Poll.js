@@ -15,7 +15,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import './Poll.scss'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
-
+import {io} from 'socket.io-client';
 
 
 const Poll = (props) => {
@@ -32,6 +32,8 @@ const Poll = (props) => {
     let voted = cookiePolls.includes(pollId)
     const authorId = poll.user_id
 
+    const socket = io("http://localhost:7777")
+    
     useEffect(() => {
         axios.get(`/api/poll/${pollId}`)
             .then(res => {
@@ -63,17 +65,18 @@ const Poll = (props) => {
                     cookiePolls.push(pollId)
                     Cookies.set('cookie', JSON.stringify(cookiePolls), { expires: 7 })
                     voted = true
-                    setResultsView(!resultsView)
+                    setResultsView(true)
                 } else {
                     console.log('user has already voted')
                 }
             })
             .catch(err => console.log(err))
+        socket.emit('updatedata', pollId)
     }
 
     return (
         <main className='whole-component'>
-            <Header />
+            <Header history={props.history} />
             <div className='poll'>
                 <section className='author-box'>
                     <h3>Poll Created By: {pollAuthor.username}</h3>

@@ -80,7 +80,7 @@ const getYourPolls = () => {
 
     return (
         <div className='usersPolls'>
-            <Header />
+            <Header history={props.history}/>
             <h1>Your Polls</h1>
             <main className='polls-box'>
              {mappedYourPolls}

@@ -11,10 +11,10 @@ import Button from '@material-ui/core/Button';
 import 'fontsource-roboto'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { makeStyles } from '@material-ui/core/styles';
 
 
 const Header = (props) => {
+    console.log('props: ', props)
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     const [dropDown, setDropDown] = useState(false)
@@ -23,25 +23,21 @@ const Header = (props) => {
     const handleSignOut = () => {
         axios.get(`/api/logout`)
             .then( res => {
+                console.log('userdata: ', res.data)
                 dispatch(updateUser(res.data))
                 props.history.push('/')
             })
             .catch(err => console.log(err))
-        setDropDown(!dropDown)
     }
 
+    
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget)
     }
       const handleClose = () => {
         setAnchorEl(null);
     }
-    const redirectToDash = () => {
-        props.history.push('/')
-    }
-
-    
-
+  
     return (
         <div className='header'>
             <Link to='/' className='drop-down-link'>
@@ -49,8 +45,11 @@ const Header = (props) => {
             </Link>
             <nav>
                 {!user.id
-                 ? <Link to='/login' className='nav-links'>Sign In</Link>
-                 
+                 ? 
+                 <div className='header-links'>
+                 <Link to='/' className='nav-links'>Dashboard</Link>
+                 <Link to='/login' className='nav-links'>Sign In</Link>
+                 </div>
                  : <>
                         <div className='profile-flex-box'> 
                             {/* add conditonal statement for if user has profile pic */}
@@ -73,25 +72,13 @@ const Header = (props) => {
                         <div className='menu-profile-flex-box'> 
                             <img src={user.profile_picture} alt='user profile pic' className='menu-profile-pic'/>
                             <h4 className='username'>{user.username}</h4>
-                            <MenuItem onClick={handleClose}><Link to='/' className='drop-down-link'><p>Dashboard</p></Link></MenuItem>
-                            <MenuItem onClick={handleClose}><Link to={`/${user.id}/polls`} className='drop-down-links'>Your Polls</Link></MenuItem>
-                            <MenuItem onClick={handleClose}><Link to={`/${user.id}/settings`} className='drop-down-links'>Settings</Link></MenuItem>
-                            <MenuItem onClick={handleClose}> <Link className='drop-down-links' onClick={handleSignOut}>Sign Out</Link></MenuItem>
+                            <MenuItem onClick={handleClose} className='menu-item'><Link to='/' className='drop-down-link'><p>Dashboard</p></Link></MenuItem>
+                            <MenuItem onClick={handleClose} className='menu-item'><Link to={`/${user.id}/polls`} className='drop-down-links'>Your Polls</Link></MenuItem>
+                            <MenuItem onClick={handleClose} className='menu-item'><Link to={`/${user.id}/settings`} className='drop-down-links'>Settings</Link></MenuItem>
+                            <MenuItem onClick={handleClose} className='menu-item'> <Link className='drop-down-links' onClick={handleSignOut}>Sign Out</Link></MenuItem>
                         </div>                     
                     </section>
                 </Menu>
-                    {/* {dropDown && 
-                        <section className='drop-down-menu'>
-                            <div className='menu-profile-flex-box'> 
-                                <img src={user.profile_picture} alt='user profile pic' className='menu-profile-pic' onClick={() => setDropDown(!dropDown)}/>
-                                <h4 onClick={() => setDropDown(!dropDown)} className='username'>{user.username}</h4>
-                            </div>
-                            <Link to='/' className='drop-down-link'>Dashboard</Link>
-                            <Link to={`/${user.id}/polls`} className='drop-down-links'>Your Polls</Link>
-                            <Link to={`/${user.id}/settings`} className='drop-down-links'>Settings</Link>
-                            <Link className='drop-down-links' onClick={handleSignOut}>Sign Out</Link>                        
-                        </section>
-                    } */}
                 </div>
             </nav>
         </div>

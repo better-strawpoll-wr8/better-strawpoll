@@ -8,7 +8,6 @@ import './Landing.scss'
 import logo from '../../img/logo.png'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import Snackbar from '@material-ui/core/Snackbar';
 import 'fontsource-roboto';
 
 
@@ -98,7 +97,8 @@ const Landing = (props) => {
                             type='password'
                             onChange={e => setPassword(e.target.value)}/>
                  </div>}
-                <Button onClick={handleLogin}>Login</Button>
+                 {!registerView ? <Button onClick={handleLogin}>Login</Button> : <Button onClick={() => setRegisterView(!registerView)}>Login</Button>}
+                
                 {!registerView && <Button onClick={() => setRegisterView(!registerView)}>Register</Button>}
                 
             </section>
