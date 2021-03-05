@@ -28,7 +28,6 @@ const Landing = (props) => {
         if( password && password === verPassword){
             axios.post('/api/register', {username, email, password, profilePic})
                 .then(res => {
-                    console.log(res.data)
                     dispatch(updateUser(res.data))
                     props.history.push('/')
                 })
@@ -42,7 +41,6 @@ const Landing = (props) => {
         
         axios.post('/api/login', {email, password})
             .then(res => {
-                console.log(res.data)
                 dispatch(updateUser(res.data))
                 props.history.push('/')
             })

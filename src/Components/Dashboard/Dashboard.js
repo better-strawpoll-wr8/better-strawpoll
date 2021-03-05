@@ -14,7 +14,7 @@ const Dashboard = (props) => {
     const [recentlyCreated, setRecentlyCreated] = useState([])
     const [recentlyEnded, setRecentlyEnded] = useState([])
 
-//The bellow functions act as links to redirect the user to other views.
+    //The below functions act as links to redirect the user to other views.
     const createNewPoll = () => {
         props.history.push('/create-poll')
     }

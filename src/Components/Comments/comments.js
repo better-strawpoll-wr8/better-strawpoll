@@ -43,7 +43,7 @@ const Comments = (props) => {
 
     const mappedComments = pollComment.map((comments, index) => {
         return (
-            <div className='comment-container' key={index} >
+            <div className='comment-container' key={index} onClick={()=> setComment(`@${comments.username} `)}>
                 <div className='pic-username-container'>
                     <img src={comments.profile_picture} className='comment-pic'/>
                     <h5 className='comment-username'>{comments.username}</h5>

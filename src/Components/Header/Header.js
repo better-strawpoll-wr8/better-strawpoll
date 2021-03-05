@@ -13,6 +13,7 @@ import 'fontsource-roboto'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
+//Styling for mui-menu
 const useStyles = makeStyles((theme) => ({
     menuPaper: {
       backgroundColor: "#8d9db6"
@@ -27,7 +28,7 @@ const Header = (props) => {
     const [anchorEl, setAnchorEl] = useState(null)
     const classes = useStyles();
 
-
+    //sign out function
     const handleSignOut = () => {
         axios.get(`/api/logout`)
             .then( res => {
@@ -38,7 +39,7 @@ const Header = (props) => {
             .catch(err => console.log(err))
     }
 
-    
+    //drop down menu toggles
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget)
     }

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, {userState, useEffect, useState} from 'react'
+import React, { userState, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import {updateUser} from '../../redux/reducer'
 import { withRouter, Link } from 'react-router-dom'
@@ -11,13 +11,12 @@ import './UsersPolls.scss'
 const UsersPolls = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
-    console.log('user:', user)
 
-const [yourPolls, setYourPolls] = useState([])
+    const [yourPolls, setYourPolls] = useState([])
 
-const getYourPolls = () => {
+    const getYourPolls = () => {
         const id = user.id
-        axios.get('/api/polls/'+id )
+        axios.get('/api/polls/' + id)
             .then(res => {
                 setYourPolls(res.data)
                 console.log(res.data)
@@ -26,7 +25,7 @@ const getYourPolls = () => {
     }
 
     const loggedinView = () => {
-        if(!user.id){
+        if (!user.id) {
             props.history.push('/')
         }
     }
@@ -35,7 +34,6 @@ const getYourPolls = () => {
         getYourPolls()
         loggedinView()
     }, [])
-
 
     const mappedYourPolls = yourPolls.map(poll => {
 
@@ -80,11 +78,11 @@ const getYourPolls = () => {
 
     return (
         <div className='usersPolls'>
-            <Header history={props.history}/>
+            <Header history={props.history} />
             <div className='userPolls-container'>
                 <h2>Your Polls</h2>
                 <main className='polls-box'>
-                {mappedYourPolls}
+                    {mappedYourPolls}
                 </main>
             </div>
         </div>
