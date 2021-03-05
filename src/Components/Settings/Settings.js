@@ -88,7 +88,7 @@ const Settings = (props) => {
     return (
         <div className='settings'>
             <Header history={props.history} user={user}/>
-            <h2 className='welcome-message'>Welcome to your profile settings, {user.username}.</h2>
+            <h2 className='welcome-message'>Welcome to your account settings, {user.username}.</h2>
             <img className='settings-profile-pic' src={user.profile_picture} alt='user profile picture'/>
             <h4>Email: {user.email}</h4>
             <h4>Username: {user.username}</h4>

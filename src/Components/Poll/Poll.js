@@ -19,8 +19,10 @@ import {io} from 'socket.io-client';
 
 
 const Poll = (props) => {
+    //User variables
     const user = useSelector(state => state.user)
     let cookiePolls = JSON.parse(Cookies.get('cookie'))
+    //State variables
     const [expired, setExpired] = useState(false)
     const [poll, setPoll] = useState({})
     const [pollAuthor, setPollAuthor] = useState({})
@@ -33,6 +35,25 @@ const Poll = (props) => {
     const authorId = poll.user_id
 
     const socket = io("https://165.232.156.25:7777")
+    
+    console.log(props)
+    const handleVote = (voteIndex) => {
+        poll.options.optionsListTrim[voteIndex].voteCount++
+        axios.put('/api/vote', { options: poll.options, pollId })
+            .then(res => {
+                //If cookies does not have pollId in it, poll id is pushed after vote is registered
+                if (!cookiePolls.includes(pollId)) {
+                    cookiePolls.push(pollId)
+                    Cookies.set('cookie', JSON.stringify(cookiePolls), { expires: 7 })
+                    voted = true
+                    setResultsView(true)
+                } else {
+                    console.log('user has already voted')
+                }
+            })
+            .catch(err => console.log(err))
+        socket.emit('updatedata', pollId)
+    }
     
     useEffect(() => {
         axios.get(`/api/poll/${pollId}`)
@@ -54,24 +75,6 @@ const Poll = (props) => {
 
         }
     }, [poll])
-
-    const handleVote = (voteIndex) => {
-        poll.options.optionsListTrim[voteIndex].voteCount++
-        axios.put('/api/vote', { options: poll.options, pollId })
-            .then(res => {
-                console.log('res.data:', res.data)
-                if (!cookiePolls.includes(pollId)) {
-                    cookiePolls.push(pollId)
-                    Cookies.set('cookie', JSON.stringify(cookiePolls), { expires: 7 })
-                    voted = true
-                    setResultsView(true)
-                } else {
-                    console.log('user has already voted')
-                }
-            })
-            .catch(err => console.log(err))
-        socket.emit('updatedata', pollId)
-    }
 
     return (
         <main className='whole-component'>
@@ -131,7 +134,7 @@ const Poll = (props) => {
                 <Comments pollId={pollId}/>
             </section>}
             <h2>Share this poll</h2>
-            <ShareSocials shareUrl={`/api/poll/${pollId}`} />
+            <ShareSocials shareUrl={props.match.url} />
         </main >
     )
 }

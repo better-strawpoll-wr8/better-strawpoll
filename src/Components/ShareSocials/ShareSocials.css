@@ -1,0 +1,16 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.share-socials {
+  width: auto;
+  padding: 15px;
+}
+
+.share-socials .share-buttons {
+  margin: 10px;
+}
+/*# sourceMappingURL=ShareSocials.css.map */

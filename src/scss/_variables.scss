@@ -1,5 +1,7 @@
-$primary-color: #8d9db6;
-$accent-color: #667292(184, 187, 21, 0.904);
+$primary-color: linear-gradient(#8d9db6fa,rgb(248, 248, 248));
+$accent-color: linear-gradient(#667292(184, 187, 21, 0.904),rgb(248, 248, 248));
+$beige-gradient: linear-gradient(#ecececef,#b8a968f5);
+$beige-color: linear-gradient(#ac9f65f5,#b8a968f5);
 $text-color: white;
 $font-weight: (
     "regular": 400,
