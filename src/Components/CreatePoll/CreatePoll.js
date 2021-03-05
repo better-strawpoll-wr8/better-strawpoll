@@ -4,20 +4,47 @@ import {useDispatch, useSelector} from 'react-redux'
 import Header from '../Header/Header'
 //Styling Imports
 import './CreatePoll.scss'
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+
+const useStyles = makeStyles((theme) => ({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 220,
+    },
+}));
 
 const CreatePoll = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
+    const classes = useStyles();
 
     console.log(user)
 
     let date = new Date()
+    console.log('date:', date.toISOString().slice(0,10))
+    console.log('time:', date.toISOString().slice(0,10))
     date.setDate(date.getDate() + 7)
     
     const [subject, setSubject] = useState('')
     const [optionsList, setOptions] = useState([{optionName: '', voteCount: 0}, {optionName: '', voteCount: 0}, {optionName: '', voteCount: 0}])
     const [expiryDate, setExpiryDate] = useState(date.toISOString().slice(0, 10))
     const [expiryTime, setExpiryTime] = useState('00:00')
+
+    const convertToLocalTime = (date) =>{
+        console.log('passed in date',date)
+        let localDate = new Date(date)
+        console.log('local date',localDate)
+        setExpiryDate(localDate.toISOString().slice(0,10))
+        console.log(expiryDate)
+    }
+
 
     const createPoll = () => {
         const optionsListTrim = optionsList.filter(option => option.optionName)
@@ -32,9 +59,10 @@ const CreatePoll = (props) => {
                 date_created: new Date(), 
                 expiry_date: expiryDate + ' ' + expiryTime + ':00'
             })
-            //.then push to poll view
+            .then( res => {
+                props.history.push(`/polls/${res.data.poll_id}`)
+            })
             .catch(err => console.log(err))
-            props.history.push('/')
         }
         else {
             // error message popup
@@ -56,7 +84,7 @@ const CreatePoll = (props) => {
     const loggedinView = () => {
         if(!user.id){
             console.log(user)
-            // props.history.push('/')
+            props.history.push('/')
         }
     }
 
@@ -105,6 +133,17 @@ const CreatePoll = (props) => {
                     type="time"
                     value={expiryTime}
                     onChange={e => setExpiryTime(e.target.value)}/>
+                     <TextField
+                        id="datetime-local"
+                        label="Next appointment"
+                        type="datetime-local"
+                        defaultValue="2021-05-24T10:30"
+                        className={classes.textField}
+                        onChange ={e => console.log(e.target.value)}
+                        InputLabelProps={{
+                        shrink: true
+                    }}
+                />
             </label>
             </div>
             </main>

@@ -81,10 +81,12 @@ const getYourPolls = () => {
     return (
         <div className='usersPolls'>
             <Header history={props.history}/>
-            <h1>Your Polls</h1>
-            <main className='polls-box'>
-             {mappedYourPolls}
-             </main>
+            <div className='userPolls-container'>
+                <h2>Your Polls</h2>
+                <main className='polls-box'>
+                {mappedYourPolls}
+                </main>
+            </div>
         </div>
     )
 }

@@ -51,40 +51,16 @@ const Landing = (props) => {
 
     return (
         <div className='landing'>
-            <img src={logo} alt='logo' className='logo'/>
-            <section className='button-container'>
-                {registerView
-                 ?<div className='input-box-container'>
-                    <TextField 
-                        value={username}
-                        name='username'
-                        label='Username'
-                        onChange={e => setUsername(e.target.value)}/>
-                    <TextField 
-                        value={email}
-                        name='email'
-                        label='Email'
-                        onChange={e => setEmail(e.target.value)}/>
-                    <TextField 
-                        value={password}
-                        name='password'
-                        label='Password'
-                        type='password'
-                        onChange={e => setPassword(e.target.value)}/>
-                    <TextField 
-                        value={verPassword}
-                        name='verPassword'
-                        label='Verify Password'
-                        type='password'
-                        onChange={e => setVerPassword(e.target.value)}/>
-                    <TextField
-                        value={profilePic}
-                        name='profilePicture'
-                        label='Profile Picture URL'
-                        onChange={e => setProfilePic(e.target.value)} />
-                    <Button onClick={handleRegister}>Submit</Button>
-                 </div>
-                 :<div className='input-box-container'>
+            <div className='login-container'>
+                <img src={logo} alt='logo' className='landing-logo'/>
+                <section className='button-container'>
+                    {registerView
+                    ?<div className='input-box-container'>
+                        <TextField 
+                            value={username}
+                            name='username'
+                            label='Username'
+                            onChange={e => setUsername(e.target.value)}/>
                         <TextField 
                             value={email}
                             name='email'
@@ -96,12 +72,38 @@ const Landing = (props) => {
                             label='Password'
                             type='password'
                             onChange={e => setPassword(e.target.value)}/>
-                 </div>}
-                 {!registerView ? <Button onClick={handleLogin}>Login</Button> : <Button onClick={() => setRegisterView(!registerView)}>Login</Button>}
-                
-                {!registerView && <Button onClick={() => setRegisterView(!registerView)}>Register</Button>}
-                
-            </section>
+                        <TextField 
+                            value={verPassword}
+                            name='verPassword'
+                            label='Verify Password'
+                            type='password'
+                            onChange={e => setVerPassword(e.target.value)}/>
+                        <TextField
+                            value={profilePic}
+                            name='profilePicture'
+                            label='Profile Picture URL'
+                            onChange={e => setProfilePic(e.target.value)} />
+                        <Button onClick={handleRegister}>Submit</Button>
+                    </div>
+                    :<div className='input-box-container'>
+                            <TextField 
+                                value={email}
+                                name='email'
+                                label='Email'
+                                onChange={e => setEmail(e.target.value)}/>
+                            <TextField 
+                                value={password}
+                                name='password'
+                                label='Password'
+                                type='password'
+                                onChange={e => setPassword(e.target.value)}/>
+                    </div>}
+                    {!registerView ? <Button onClick={handleLogin}>Login</Button> : <Button onClick={() => setRegisterView(!registerView)}>Login</Button>}
+                    
+                    {!registerView && <Button onClick={() => setRegisterView(!registerView)}>Register</Button>}
+                    
+                </section>
+            </div>
 
         </div>
     )
