@@ -100,24 +100,23 @@ const CreatePoll = (props) => {
                 <div className='data'>
             <label className='data-lable'>
                 Subject:
-                <input
-                className='data-input'
-                    name="subject"
-                    placeholder="Add poll subject/question"
+                <TextField 
                     value={subject}
+                    name='subject'
+                    label='Add poll subject/question'
                     onChange={e => setSubject(e.target.value)}/>
             </label>
             <label className='data-lable'>Poll Options:
                 {optionsList.map((element, index) => {
                     return (
-                        <input 
-                        className='data-input'
-                            key={index}
-                            name="option"
-                            placeholder="Add poll option"
-                            value={element.optionName}
-                            onChange={e => handleOptionsChange(e, index)}
+                        <TextField 
+                        key={index}
+                        value={element.optionName}
+                        name='option'
+                        label='Add poll option'
+                        onChange={e => handleOptionsChange(e, index)}
                             onClick={() => addOption(index)}/>
+    
                     )
                 })}
             </label>
@@ -133,7 +132,7 @@ const CreatePoll = (props) => {
                     type="time"
                     value={expiryTime}
                     onChange={e => setExpiryTime(e.target.value)}/>
-                     <TextField
+                     {/* <TextField
                         id="datetime-local"
                         label="Next appointment"
                         type="datetime-local"
@@ -142,8 +141,8 @@ const CreatePoll = (props) => {
                         onChange ={e => console.log(e.target.value)}
                         InputLabelProps={{
                         shrink: true
-                    }}
-                />
+                    }} */}
+                {/* /> */}
             </label>
             </div>
             </main>

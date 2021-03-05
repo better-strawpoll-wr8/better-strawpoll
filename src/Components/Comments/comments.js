@@ -6,6 +6,8 @@ import './Comments.scss'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import 'fontsource-roboto';
+import defaultPic from '../../img/default-profile-pic.jpg'
+
 
 const Comments = (props) => {
     const user = useSelector(state => state.user)
@@ -43,9 +45,15 @@ const Comments = (props) => {
 
     const mappedComments = pollComment.map((comments, index) => {
         return (
-            <div className='comment-container' key={index} onClick={()=> setComment(`@${comments.username} `)}>
+            <div className='comment-container' key={index} onClick={()=> {
+                    if(comments.user_id !== user_id){
+                        setComment(`@${comments.username} `)
+                    }else{
+                        setComment('')
+                    }
+                }}>
                 <div className='pic-username-container'>
-                    <img src={comments.profile_picture} className='comment-pic'/>
+                    <img src={comments.profile_picture} className='comment-pic' alt={defaultPic}/>
                     <h5 className='comment-username'>{comments.username}</h5>
                     <h5>:</h5>
                 </div>
