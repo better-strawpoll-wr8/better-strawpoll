@@ -4,17 +4,33 @@ import {useDispatch, useSelector} from 'react-redux'
 import Header from '../Header/Header'
 //Styling Imports
 import './CreatePoll.scss'
-import TextField from '@material-ui/core/TextField'
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'
-// import 'fontsource-roboto';
+
+
+const useStyles = makeStyles((theme) => ({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 220,
+    },
+}));
 
 const CreatePoll = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
+    const classes = useStyles();
 
     console.log(user)
 
     let date = new Date()
+    console.log('date:', date.toISOString().slice(0,10))
+    console.log('time:', date.toISOString().slice(0,10))
     date.setDate(date.getDate() + 7)
     
 
@@ -24,12 +40,20 @@ const CreatePoll = (props) => {
     const [expiryTime, setExpiryTime] = useState('00:00')
     
 
+    const convertToLocalTime = (date) =>{
+        console.log('passed in date',date)
+        let localDate = new Date(date)
+        console.log('local date',localDate)
+        setExpiryDate(localDate.toISOString().slice(0,10))
+        console.log(expiryDate)
+    }
+
+
     const createPoll = () => {
         const optionsListTrim = optionsList.filter(option => option.optionName)
         // checking for at least 2 options
         if (optionsListTrim[0] && optionsListTrim[1]) {
             const id = user.id
-            console.log(id)
             axios.post('/api/poll/', {
                 id: id, 
                 subject: subject, 
@@ -37,9 +61,10 @@ const CreatePoll = (props) => {
                 date_created: new Date(), 
                 expiry_date: expiryDate + ' ' + expiryTime + ':00'
             })
-            //.then push to poll view
+            .then( res => {
+                props.history.push(`/polls/${res.data.poll_id}`)
+            })
             .catch(err => console.log(err))
-            props.history.push('/')
         }
         else {
             // error message popup
@@ -61,7 +86,7 @@ const CreatePoll = (props) => {
     const loggedinView = () => {
         if(!user.id){
             console.log(user)
-            // props.history.push('/')
+            props.history.push('/')
         }
     }
 
@@ -69,38 +94,31 @@ const CreatePoll = (props) => {
        loggedinView()
     }, [])
 
-    
-
     return (
-
-
-        
         <div className="create-poll">
             <Header history={props.history}/>
             <main className='content'>
                 <div className='data'>
             <label className='data-lable'>
-                Subject:
-                <TextField
-                variant="outlined"
-                className='data-input'
-                    name="subject"
-                    placeholder="Add poll subject/question"
+                Poll Subject:
+                <TextField 
+                    className='data-input'
                     value={subject}
+                    name='subject'
+                    label='Enter poll subject'
                     onChange={e => setSubject(e.target.value)}/>
             </label>
             <label className='data-lable'>Poll Options:
                 {optionsList.map((element, index) => {
                     return (
-                        <TextField
-                        variant="outlined"
+                        <TextField 
                         className='data-input'
-                            key={index}
-                            name="option"
-                            placeholder="Add poll option"
-                            value={element.optionName}
-                            onChange={e => handleOptionsChange(e, index)}
-                            onClick={() => addOption(index)}/>
+                        key={index}
+                        value={element.optionName}
+                        name='option'
+                        label='Add poll option'
+                        onChange={e => handleOptionsChange(e, index)}
+                        onClick={() => addOption(index)}/>
                     )
                 })}
             </label>

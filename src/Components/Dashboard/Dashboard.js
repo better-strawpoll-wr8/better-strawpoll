@@ -4,10 +4,9 @@ import Header from '../Header/Header'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Pie } from 'react-chartjs-2';
-
 //Styling Imports
 import './Dashboard.scss'
-
+import Button from '@material-ui/core/Button'
 
 const Dashboard = (props) => {
     const user = useSelector(state => state.user)
@@ -15,7 +14,7 @@ const Dashboard = (props) => {
     const [recentlyCreated, setRecentlyCreated] = useState([])
     const [recentlyEnded, setRecentlyEnded] = useState([])
 
-//The bellow functions act as links to redirect the user to other views.
+    //The below functions act as links to redirect the user to other views.
     const createNewPoll = () => {
         props.history.push('/create-poll')
     }
@@ -99,8 +98,7 @@ const Dashboard = (props) => {
     })
 
     const mappedEndedPolls = recentlyEnded.map(poll => {
-//Assigns random colors to colors variable which will be applied to the pie chart.
-
+        //Assigns random colors to colors variable which will be applied to the pie chart.
         const colors = poll.options?.optionsListTrim.map(() => '#' + Math.floor(Math.random() * 16777215).toString(16))
 
         const data = {
@@ -115,7 +113,7 @@ const Dashboard = (props) => {
                 }
             ]
         }
-//Rearranges the timestamp of date and time creadted and expired to be more easily read and broken into date and time for each mapped poll.
+        //Rearranges the timestamp of date and time creadted and expired to be more easily read and broken into date and time for each mapped poll.
         const dateCreatedStr = JSON.stringify(poll.date_created).replace(/["]+/g, '')
         const dateExpStr = JSON.stringify(poll.expiry_date).replace(/["]+/g, '')
 
@@ -162,16 +160,16 @@ const Dashboard = (props) => {
                     ?
                     <section className='not-loggedin-container'>
                         <div className='tabs'>
-                            <h2 className='login' onClick={login}>Login to Create New Poll</h2>
+                            <Button className='poll-buttons' variant='contained' id='vote-btn' onClick={login}>Login to Create New Poll</Button> 
                         </div>
                     </section>
                     :
                     <section className='loggedin-container'>
                         <div className='your-polls-box'>
-                            <h2 className='your-polls-text' onClick={yourPolls}>View Your Polls</h2>
+                            <Button className='poll-buttons' variant='contained' id='vote-btn' onClick={yourPolls}>View Your Polls</Button>
                         </div>
                         <div className='tabs'>
-                            <h2 className='create-poll-tab' onClick={createNewPoll}>Create New Poll</h2>
+                            <Button className='poll-buttons' variant='contained' id='vote-btn' onClick={createNewPoll}>Create New Poll</Button> 
                         </div>
                     </section>
                 }

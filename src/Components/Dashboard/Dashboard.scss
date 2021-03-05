@@ -5,12 +5,17 @@
 .dashboard {
     width: 100vw;
     height: 100vh;
-    // background: #b8ae81;
-    background: $primary-color;
+    background: url('../../img/dash-bg.jpg');
     justify-content: space-around;
     box-sizing: border-box;
     z-index: 1;
     overflow: scroll;
+
+    .poll-buttons{
+        margin: 10px;
+        // background: $accent-color;
+
+    }
 
     .content {
         margin: 15px 0px 0px 0px;
@@ -23,7 +28,7 @@
 
     .recently-created-polls-box {
         margin: 10px;
-        background: #b8ae81;
+        background: $beige-gradient;
         box-shadow: 1px 1px 10px rgb(0, 0, 0);
         z-index: 1;
         padding: 5px 5px;
@@ -32,7 +37,7 @@
 
     .recently-ended-poll-box {
         margin: 10px;
-        background: #b8ae81;
+        background: $beige-gradient;
         box-shadow: 1px 1px 10px rgb(0, 0, 0);
         z-index: 1;
         padding: 5px 5px;
@@ -88,6 +93,9 @@
         width: auto;
         height: auto;
         border: solid black;
+        padding: 5px;
+        margin: 5px;
+        background: rgb(248, 248, 248);
     }
     .boxes{
         display: flex;

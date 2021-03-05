@@ -2,16 +2,29 @@
 @import "../../scss/mixins";
 @import "../../scss/variables";
 
+
 .usersPolls {
     width: 100vw;
     height: 100vh;
     // background: #b8ae81;
-    background: $primary-color;
+    background: url('../../img/yp-bg.jpg'); 
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
     z-index: 1;
     overflow: scroll;
+
+    .userPolls-container{
+        @include flexCenter(column);
+    }
+    h2{
+        background: $beige-gradient;
+        width: 90vw;
+        margin: 50px 0px 10px 0px;
+        padding: 20px;
+        box-shadow: 1px 1px 10px rgb(0, 0, 0);
+        font-family: "Roboto";
+    }
 
     .polls-box {
         margin: 15px 0px 0px 0px;
@@ -21,16 +34,16 @@
         padding: 0px 10px;
         z-index: 1;
         margin: 10px;
-        background: #b8ae81;
+        // background: #b8ae81;
     // background: $primary-color;
-        box-shadow: 1px 1px 10px rgb(0, 0, 0);
+        // box-shadow: 1px 1px 10px rgb(0, 0, 0);
         z-index: 1;
         padding: 5px 5px;
         flex-wrap: wrap;
 
         .mapped-poll{
     // background: $primary-color;
-    // background: #b8ae81;
+            background: $beige-gradient;
             border: solid black;
             box-shadow: 1px 1px 10px rgb(0, 0, 0);
             padding: 30px 30px 30px 30px;

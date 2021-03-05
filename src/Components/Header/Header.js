@@ -5,6 +5,7 @@ import {updateUser} from '../../redux/reducer'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 //Styling Imports
+import { makeStyles } from '@material-ui/core/styles';
 import './Header.scss'
 import logo from '../../img/logo.png'
 import Button from '@material-ui/core/Button';
@@ -12,13 +13,22 @@ import 'fontsource-roboto'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
+//Styling for mui-menu
+const useStyles = makeStyles((theme) => ({
+    menuPaper: {
+      backgroundColor: "#8d9db6"
+    }
+  }));
 
 const Header = (props) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
+    //Styling Variables
     const [dropDown, setDropDown] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null)
+    const classes = useStyles();
 
+    //sign out function
     const handleSignOut = () => {
         axios.get(`/api/logout`)
             .then( res => {
@@ -29,7 +39,7 @@ const Header = (props) => {
             .catch(err => console.log(err))
     }
 
-    
+    //drop down menu toggles
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget)
     }
@@ -66,6 +76,7 @@ const Header = (props) => {
                     keepMounted
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
+                    classes={{ paper: classes.menuPaper }}
                 >
                     <section className='drop-down-menu'>
                         <div className='menu-profile-flex-box'> 
