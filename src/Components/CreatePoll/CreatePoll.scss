@@ -5,33 +5,36 @@
 .create-poll{
     width: 100%;
     height: 100vh;
-    // background: #b8ae81;
-    background: $primary-color;
+    background:url('../../img/cp-bg.jpg');
     justify-content: space-around;
+    justify-content: center;
     box-sizing: border-box;
+    align-items: center;
     z-index: 1;
 
+    TextField{
+        width:fit-content;
+    }
+
     .content{
-        margin: 40px 0px 0px 0px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        padding: 0px 10px;
+        margin: 50px 0px 0px 0px;
+       @include flexCenter(column);
+        padding: 40px 10px;
         z-index: 1;
     }
    
     .create-button{
         // background: $primary-color;
-        background: #b8ae81;
-        width: 25vw;
+        background: $beige-color;
         box-shadow: 1px 1px 10px rgb(0, 0, 0);
         cursor: pointer;
-        width:100%;
         z-index: 1;
-        font-size: 30px;
+        margin: 50px;
+        justify-content: center;
+        align-items: center;
     }
     .data{
-        margin: 90px 0px 0px 0px;
+        margin: 20px 0px 0px 0px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -41,10 +44,16 @@
 
     .data-lable{
         font-size: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .data-input{
-        font-size: 25px;
-        background: #b8ae81;
+        font-size: 40px;
+        background: $beige-gradient;
+        margin: 5px 5px;
     }
+
+
 
 }

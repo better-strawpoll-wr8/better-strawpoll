@@ -1,0 +1,225 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard {
+  width: 100vw;
+  height: 100vh;
+  background: #8d9db6;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  z-index: 1;
+  overflow: scroll;
+}
+
+.dashboard .content {
+  margin: 15px 0px 0px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 0px 10px;
+  z-index: 1;
+}
+
+.dashboard .recently-created-polls-box {
+  margin: 10px;
+  background: #b8ae81;
+  -webkit-box-shadow: 1px 1px 10px black;
+          box-shadow: 1px 1px 10px black;
+  z-index: 1;
+  padding: 5px 5px;
+}
+
+.dashboard .recently-ended-poll-box {
+  margin: 10px;
+  background: #b8ae81;
+  -webkit-box-shadow: 1px 1px 10px black;
+          box-shadow: 1px 1px 10px black;
+  z-index: 1;
+  padding: 5px 5px;
+}
+
+.dashboard .tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.dashboard .login {
+  background: #b8ae81;
+  -webkit-box-shadow: 1px 1px 10px black;
+          box-shadow: 1px 1px 10px black;
+  cursor: pointer;
+  width: 100%;
+  z-index: 1;
+}
+
+.dashboard .create-poll-tab {
+  background: #b8ae81;
+  width: 100%;
+  -webkit-box-shadow: 1px 1px 10px black;
+          box-shadow: 1px 1px 10px black;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.dashboard .your-polls-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 1;
+}
+
+.dashboard .your-polls-box .your-polls-text {
+  background: #b8ae81;
+  width: 100%;
+  -webkit-box-shadow: 1px 1px 10px black;
+          box-shadow: 1px 1px 10px black;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.dashboard .loggedin-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  z-index: 1;
+}
+
+.dashboard .data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.dashboard .mapped-poll {
+  width: auto;
+  height: auto;
+  border: solid black;
+}
+
+.dashboard .boxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.dashboard .results {
+  z-index: 2;
+}
+
+@media (max-width: 800px) {
+  .content {
+    margin: 20px 0px 0px 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    padding: 0px 10px;
+    z-index: 1;
+  }
+  .boxes {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-right: 30px;
+  }
+  .tabs {
+    margin-right: 35px;
+  }
+  .recently-created-polls-box {
+    font-size: 23px;
+  }
+  .recently-ended-poll-box {
+    font-size: 23px;
+  }
+  .login {
+    font-size: 30px;
+  }
+  .create-poll-tab {
+    font-size: 30px;
+  }
+  .your-polls-text {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .dashboard {
+    height: 100%;
+    z-index: 1;
+  }
+  .recently-created-polls-box {
+    font-size: 17px;
+  }
+  .recently-ended-poll-box {
+    font-size: 17px;
+  }
+  .tabs {
+    margin-right: 3px;
+  }
+  .login {
+    font-size: 20px;
+  }
+  .boxes {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-right: 0px;
+  }
+  .create-poll-tab {
+    font-size: 20px;
+  }
+  .your-polls-text {
+    font-size: 20px;
+  }
+  .mapped-poll {
+    width: 45%;
+  }
+}
+/*# sourceMappingURL=Dashboard.css.map */

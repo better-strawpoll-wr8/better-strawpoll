@@ -6,6 +6,7 @@ import Header from '../Header/Header'
 import './CreatePoll.scss'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,10 +33,12 @@ const CreatePoll = (props) => {
     console.log('time:', date.toISOString().slice(0,10))
     date.setDate(date.getDate() + 7)
     
+
     const [subject, setSubject] = useState('')
     const [optionsList, setOptions] = useState([{optionName: '', voteCount: 0}, {optionName: '', voteCount: 0}, {optionName: '', voteCount: 0}])
     const [expiryDate, setExpiryDate] = useState(date.toISOString().slice(0, 10))
     const [expiryTime, setExpiryTime] = useState('00:00')
+    
 
     const convertToLocalTime = (date) =>{
         console.log('passed in date',date)
@@ -51,7 +54,6 @@ const CreatePoll = (props) => {
         // checking for at least 2 options
         if (optionsListTrim[0] && optionsListTrim[1]) {
             const id = user.id
-            console.log(id)
             axios.post('/api/poll/', {
                 id: id, 
                 subject: subject, 
@@ -96,55 +98,47 @@ const CreatePoll = (props) => {
         <div className="create-poll">
             <Header history={props.history}/>
             <main className='content'>
-            <button className='create-button' onClick={() => createPoll()}>Create Poll</button>
                 <div className='data'>
             <label className='data-lable'>
-                Subject:
+                Poll Subject:
                 <TextField 
+                    className='data-input'
                     value={subject}
                     name='subject'
-                    label='Add poll subject/question'
+                    label='Enter poll subject'
                     onChange={e => setSubject(e.target.value)}/>
             </label>
             <label className='data-lable'>Poll Options:
                 {optionsList.map((element, index) => {
                     return (
                         <TextField 
+                        className='data-input'
                         key={index}
                         value={element.optionName}
                         name='option'
                         label='Add poll option'
                         onChange={e => handleOptionsChange(e, index)}
-                            onClick={() => addOption(index)}/>
-    
+                        onClick={() => addOption(index)}/>
                     )
                 })}
             </label>
             <label className='data-lable'>
                 Expiration Date:
-                <input 
+                <TextField
+                variant="outlined"
                 className='data-input'
-                    type="date"
+                    type="date"   //try manipulating this
                     value={expiryDate}
                     onChange={e => {setExpiryDate(e.target.value)}}/>
-                <input
+                <TextField
+                variant="outlined"
                 className='data-input'
-                    type="time"
+                    type="time"  //try manipulating this
                     value={expiryTime}
                     onChange={e => setExpiryTime(e.target.value)}/>
-                     {/* <TextField
-                        id="datetime-local"
-                        label="Next appointment"
-                        type="datetime-local"
-                        defaultValue="2021-05-24T10:30"
-                        className={classes.textField}
-                        onChange ={e => console.log(e.target.value)}
-                        InputLabelProps={{
-                        shrink: true
-                    }} */}
-                {/* /> */}
             </label>
             </div>
+            <Button className='create-button' onClick={() => createPoll()}>Create Poll</Button>
             </main>
         </div>
     )
