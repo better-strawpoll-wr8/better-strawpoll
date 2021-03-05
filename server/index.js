@@ -27,7 +27,14 @@ massive({
 }).then(db => {
     app.set('db', db)
     console.log('db connected')
-    const server = app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`))
+    // const server = app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`))
+
+    const server = app 
+        .use(express.static('../public'))
+        .get('*', function (req, res) {
+            res.sendFile('/public/index.html');
+            })
+        .listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
 
     const io = require('socket.io')(server, {
         cors: {origin: "*"}
@@ -66,10 +73,9 @@ app.post('/api/comment/:poll_id', mainCtrl.createComment)
 app.delete('/api/comment/:id', mainCtrl.deleteComment)
 app.get('/api/comments/:poll_id', mainCtrl.getComments) // get comments by poll id
 
-
-
+/*
 app.use(express.static(`${__dirname}/../build`))
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build/index.html'))
-  })
+})*/
