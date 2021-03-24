@@ -1,8 +1,8 @@
 import axios from 'axios'
-import React, { userState, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import {updateUser} from '../../redux/reducer'
-import { withRouter, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Pie } from 'react-chartjs-2';
 import Header from '../Header/Header'
 //Styling Imports

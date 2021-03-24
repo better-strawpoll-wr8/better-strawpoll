@@ -1,4 +1,4 @@
-import React, {userState, useEffect, useState} from 'react'
+import React, { useState} from 'react'
 import {updateUser} from '../../redux/reducer'
 import {useDispatch, useSelector} from 'react-redux'
 import axios from 'axios'
