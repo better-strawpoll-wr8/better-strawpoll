@@ -34,7 +34,7 @@ const Poll = (props) => {
     let voted = cookiePolls.includes(pollId)
     const authorId = poll.user_id
 
-    // const socket = io("http://localhost:7777")
+    const socket = io("165.232.156.25")
     
     console.log(props)
     const handleVote = (voteIndex) => {
